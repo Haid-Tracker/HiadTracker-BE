@@ -10,6 +10,10 @@ body {
 .navbartop {
   background-color: #6b0d0d;
   padding: 10px 0;
+  position: fixed; /* Perbarui */
+  width: 100%;
+  top: 0;
+  z-index: 9999; /* Perbarui */
 }
 
 .navbar {
@@ -20,6 +24,7 @@ body {
   padding: 10px 20px;
   position: fixed;
   width: 98%;
+  top: 20px; /* Perbarui */
   z-index: 9999;
 }
 

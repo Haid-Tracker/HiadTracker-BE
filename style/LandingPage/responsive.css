@@ -81,6 +81,11 @@
     margin: 25px;
     color: #fff;
   }
+
+  /* agar content1 terlihat */
+  .text-content {
+    margin-top: 50px;
+  }
 }
 
 @media screen and (min-width: 376px) and (max-width: 976px) {
@@ -154,6 +159,11 @@
   .navbar #drawer .nav-links .theme-toggle {
     margin: 25px;
     color: #fff;
+  }
+
+  /* agar content1 terlihat */
+  .text-content {
+    margin-top: 50px;
   }
 }
 
