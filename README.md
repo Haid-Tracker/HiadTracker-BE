@@ -9,6 +9,7 @@ Proyek HaidTracker adalah sebuah platform website yang dirancang untuk mendukung
 - [@SanayaAlmatin](https://github.com/SanayaAlmatin)
 - [@dimasalvarizk](https://github.com/dimasalvarizk)
 - [@fadhlihilmans](https://github.com/fadhlihilmans)
+- [@MCahyaGentaPratama30](https://github.com/MCahyaGentaPratama30)
 
 
 ## Tech Stack
