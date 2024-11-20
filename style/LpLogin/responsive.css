@@ -1,0 +1,14 @@
+@media screen and (max-width: 976px) {
+  .navbar {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .profile-pic {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    margin-left: 65px;
+  }
+}
