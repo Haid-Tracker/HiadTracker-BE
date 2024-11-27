@@ -52,14 +52,19 @@
                   <p>permissions</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('user-profiles') }}" class="nav-link">
+                  <i class="fas fa-user-edit nav-icon"></i>
+                  <p>user-profiles</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{ url('articles') }}" class="nav-link">
+              <i class="nav-icon fas fa-newspaper"></i>
               <p>
-                example
-                <span class="right badge badge-danger">New</span>
+                articles
               </p>
             </a>
           </li>
