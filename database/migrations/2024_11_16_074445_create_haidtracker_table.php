@@ -54,7 +54,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->string('hero_photo')->nullable();
-            $table->text('content');
+            $table->longText('content');
             $table->string('author', 100)->default('Haid Tracker - Team');
             $table->timestamps();
         });
