@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserProfileController;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
@@ -77,8 +76,12 @@ Route::group(['middleware' => ['role:super-admin|admin']], function() {
     Route::resource('users', App\Http\Controllers\UserController::class);
     Route::get('users/{userId}/delete', [App\Http\Controllers\UserController::class, 'destroy']);
 
-    Route::resource('user-profiles', App\Http\Controllers\UserProfileController::class);
+    Route::resource('user-profiles', controller: App\Http\Controllers\UserProfileController::class);
     Route::get('user-profiles/{id}/delete', [App\Http\Controllers\UserProfileController::class, 'destroy']);
+
+    Route::resource('articles', App\Http\Controllers\ArticleController::class);
+    Route::get('/articles/{id}/preview', [App\Http\Controllers\ArticleController::class, 'preview'])->name('articles.preview');
+    Route::get('articles/{id}/delete', [App\Http\Controllers\ArticleController::class, 'destroy']);
 });
 
 
