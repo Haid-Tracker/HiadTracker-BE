@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\CycleRecordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Auth\Events\Verified;
@@ -79,6 +80,12 @@ Route::group(['middleware' => ['role:super-admin|admin']], function() {
 
     Route::resource('user-profiles', App\Http\Controllers\UserProfileController::class);
     Route::get('user-profiles/{id}/delete', [App\Http\Controllers\UserProfileController::class, 'destroy']);
+
+    //cycle record
+    Route::get('user/cycle-record', [CycleRecordController::class, 'index'])->name('user.cycle-record');
+    Route::get('user/cycle-record/edit/{userId}', [CycleRecordController::class, 'edit'])->name('user.cycle-record.edit');
+    Route::put('user/cycle-record/update/{userId}', [CycleRecordController::class, 'update'])->name('user.cycle-record.update');
+    Route::delete('user/cycle-record/delete/{userId}', [CycleRecordController::class, 'destroy'])->name('user.cycle-record.destroy');
 });
 
 
