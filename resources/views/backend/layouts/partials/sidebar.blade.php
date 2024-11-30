@@ -68,6 +68,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('user.cycle-record') }}" class="nav-link">
+              <i class="nav-icon fas fa-newspaper"></i>
+              <p>
+                Cycle - Record
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
