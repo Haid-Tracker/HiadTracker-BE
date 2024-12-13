@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\CycleRecordController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
@@ -42,9 +45,14 @@ Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // buatan genta ganteng
+    Route::get('/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('custom.password.change');
+    Route::put('/change-password', [ChangePasswordController::class, 'changePassword'])->name('custom.password.update');
+
 });
 
 // admin routes
@@ -79,6 +87,12 @@ Route::group(['middleware' => ['role:super-admin|admin']], function() {
 
     Route::resource('user-profiles', App\Http\Controllers\UserProfileController::class);
     Route::get('user-profiles/{id}/delete', [App\Http\Controllers\UserProfileController::class, 'destroy']);
+
+    //cycle record
+    Route::get('user/cycle-record', [CycleRecordController::class, 'index'])->name('user.cycle-record');
+    Route::get('user/cycle-record/edit/{userId}', [CycleRecordController::class, 'edit'])->name('user.cycle-record.edit');
+    Route::put('user/cycle-record/update/{userId}', [CycleRecordController::class, 'update'])->name('user.cycle-record.update');
+    Route::delete('user/cycle-record/delete/{userId}', [CycleRecordController::class, 'destroy'])->name('user.cycle-record.destroy');
 });
 
 
