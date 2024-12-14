@@ -8,11 +8,6 @@
               <h1>Halaman Landing Page Setelah Login</h1>
             </div>
         </div>
-        @if(session('success'))
-<div class="alert alert-success" role="alert">
-    {{ session('success') }}
-</div>
-@endif
     </div>
 </section>
 

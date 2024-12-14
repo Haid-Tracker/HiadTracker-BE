@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,46 +14,32 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit($id)
+    public function edit(Request $request): View
     {
-        $user = User::with('profile')->findOrFail($id);
-
-        return view('frontend.profile.edit', compact('user'));
-
+        return view('frontend.profile.edit', [
+            'user' => $request->user(),
+        ]);
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(Request $request, $id)
+    public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'weight' => 'nullable|numeric',
-            'birth_date' => 'nullable|date',
-            'height' => 'nullable|numeric',
-        ]);
+        $request->user()->fill($request->validated());
 
-        $user = User::findOrFail($id);
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
 
-        $user->update([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-        ]);
+        $request->user()->save();
 
-        $user->profile()->updateOrCreate(
-            ['user_id' => $user->id],
-            [
-                'weight' => $validated['weight'],
-                'birth_date' => $validated['birth_date'],
-                'height' => $validated['height'],
-            ]
-        );
-
-        return redirect()->route('home', $user->id)->with('success', 'Profil berhasil diperbarui!');
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    /**
+     * Delete the user's account.
+     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
