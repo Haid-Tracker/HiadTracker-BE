@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 755af7aae7d4b066794333be4f41a71827472c65
 # HaidTracker
 
 Proyek HaidTracker adalah sebuah platform website yang dirancang untuk mendukung kebutuhan perempuan dalam mencatat dan memahami siklus menstruasi mereka. Saat ini, banyak perempuan yang kesulitan dalam mengakses informasi yang tepat dan terpersonalisasi mengenai gejala menstruasi yang mereka alami, sehingga sering kali merasa bingung atau khawatir ketika mengalami perubahan dalam siklusnya. Selain itu, pencatatan siklus menstruasi manual sering kali merepotkan, dan tidak jarang informasi gejala atau pola siklus tidak terdokumentasikan dengan baik.
@@ -21,7 +18,3 @@ Proyek HaidTracker adalah sebuah platform website yang dirancang untuk mendukung
 
 **Server:** HAPI, Laravel
 
-<<<<<<< HEAD
->>>>>>> 755af7aae7d4b066794333be4f41a71827472c65
-=======
->>>>>>> 755af7aae7d4b066794333be4f41a71827472c65
