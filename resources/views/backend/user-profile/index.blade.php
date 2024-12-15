@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <a href="{{ route('user-profiles.create') }}" class="btn btn-primary">Add Profile</a>
+                    <a href="{{ route('admin.user-profiles.create') }}" class="btn btn-primary">Add Profile</a>
                 </ol>
             </div>
         </div>
@@ -39,7 +39,6 @@
                         <th>Weight</th>
                         <th>Height</th>
                         <th>Cycle Length</th>
-                        <th>Last Period Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -61,19 +60,16 @@
                         <td>{{ $profile->weight }} kg</td>
                         <td>{{ $profile->height }} cm</td>
                         <td>{{ $profile->cycle_length }} days</td>
-                        <td>{{ $profile->last_period_date }}</td>
                         <td>
-                            <a href="{{ route('user-profiles.edit', $profile->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('admin.user-profiles.edit', $profile->id) }}" class="btn btn-sm btn-info">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-danger"
                                     data-toggle="modal"
                                     data-target="#deleteModal"
-                                    data-delete-url="{{ route('user-profiles.destroy', $profile->id) }}">
+                                    data-delete-url="{{ route('admin.user-profiles.destroy', $profile->id) }}">
                                 <i class="fas fa-trash"></i>
                             </button>
-
-
                         </td>
                     </tr>
                     @endforeach

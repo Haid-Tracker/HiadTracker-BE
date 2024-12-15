@@ -22,14 +22,13 @@ class Article extends Model
         'author'
     ];
 
-    protected static function boot()
+    public function categories()
     {
-        parent::boot();
+        return $this->belongsToMany(CategoryArticle::class, 'article_has_categories', 'article_id', 'category_id');
+    }
 
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = (string) Str::uuid();
-            }
-        });
+    public function cycleRecords()
+    {
+        return $this->belongsToMany(CycleRecord::class, 'record_has_articles', 'article_id', 'cycle_record_id');
     }
 }

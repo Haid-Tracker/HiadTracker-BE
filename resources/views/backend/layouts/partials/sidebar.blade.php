@@ -1,76 +1,83 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-indigo elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ url('/admin') }}" class="brand-link">
-      <img src=" {{ asset('assets/dist/img/haid-tracker-icon.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ url('admin') }}" class="brand-link">
+      <img src="{{ asset('assets/dist/img/haid-tracker-icon.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Haid Tracker</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          {{-- <li class="nav-header">USERS</li> --}}
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-header">USERS</li>
+          <li class="nav-item {{ Request::is('admin/users*') || Request::is('admin/roles*') || Request::is('admin/permissions*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('admin/users*') || Request::is('admin/roles*') || Request::is('admin/permissions*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                users
+                Users
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('users') }}" class="nav-link active">
+                <a href="{{ url('admin/users') }}" class="nav-link {{ Request::is('admin/users*') ? 'active' : '' }}">
                   <i class="fas fa-user nav-icon"></i>
-                  <p>users</p>
+                  <p>Users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('roles') }}" class="nav-link">
+                <a href="{{ url('admin/roles') }}" class="nav-link {{ Request::is('admin/roles*') ? 'active' : '' }}">
                   <i class="fas fa-users-cog nav-icon"></i>
-                  <p>roles</p>
+                  <p>Roles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('permissions') }}" class="nav-link">
+                <a href="{{ url('admin/permissions') }}" class="nav-link {{ Request::is('admin/permissions*') ? 'active' : '' }}">
                   <i class="fas fa-key nav-icon"></i>
-                  <p>permissions</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('user-profiles') }}" class="nav-link">
-                  <i class="fas fa-user-edit nav-icon"></i>
-                  <p>user-profiles</p>
+                  <p>Permissions</p>
                 </a>
               </li>
             </ul>
+            <li class="nav-item">
+              <a href="{{ url('admin/user-profiles') }}" class="nav-link {{ Request::is('admin/user-profiles*') ? 'active' : '' }}">
+                <i class="fas fa-user-edit nav-icon"></i>
+                <p>User Profiles</p>
+              </a>
+            </li>
           </li>
+          <li class="nav-header">ARTICLES</li>
+          <li class="nav-item {{ Request::is('admin/articles*') || Request::is('admin/category-article*') ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link {{ Request::is('admin/articles*') || Request::is('admin/category-article*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-newspaper"></i>
+                <p>
+                    Articles
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ url('admin/articles') }}" class="nav-link {{ Request::is('admin/articles*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>Articles</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('admin/category-article') }}" class="nav-link {{ Request::is('admin/category-article*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-th-large"></i>
+                        <p>Categories</p>
+                        </a>
+                    </li>
+                </ul>
+          </li>
+          <li class="nav-header">CYCLE RECORDS</li>
           <li class="nav-item">
-            <a href="{{ url('articles') }}" class="nav-link">
-              <i class="nav-icon fas fa-newspaper"></i>
-              <p>
-                articles
-              </p>
+            <a href="{{ route('admin.cycle-record') }}" class="nav-link {{ Request::is('admin/cycle-record*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-th-list"></i>
+              <p>Cycle - Record</p>
             </a>
           </li>
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
 </aside>

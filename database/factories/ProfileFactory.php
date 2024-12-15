@@ -19,8 +19,6 @@ class ProfileFactory extends Factory
             'weight' => fake()->randomFloat(2, 40, 100),
             'height' => fake()->randomFloat(2, 140, 180),
             'photo' => null,
-            'cycle_length' => fake()->numberBetween(21, 35),
-            'last_period_date' => fake()->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use App\Models\Feedback;
 
 class CycleRecord extends Model
 {
@@ -16,18 +17,10 @@ class CycleRecord extends Model
         'end_date',
         'predicted_date',
         'blood_volume',
-        'symptoms',
         'mood',
+        'cycle_regularity',
         'medication',
         'notes'
-    ];
-
-    protected $casts = [
-        'start_date' => 'date',
-        'end_date' => 'date',
-        'predicted_date' => 'date',
-        'symptoms' => 'json',
-        'medication' => 'boolean'
     ];
 
     public function user()
@@ -39,4 +32,15 @@ class CycleRecord extends Model
     {
         return $this->hasOne(Feedback::class);
     }
+
+    public function symptoms()
+    {
+        return $this->belongsToMany(Symptom::class, 'record_has_symptoms', 'cycle_record_id', 'symptom_id');
+    }
+
+    public function articles()
+    {
+        return $this->belongsToMany(Article::class, 'record_has_articles', 'cycle_record_id', 'article_id');
+    }
+
 }
