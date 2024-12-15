@@ -8,6 +8,11 @@
               <h1>Halaman Landing Page Setelah Login</h1>
             </div>
         </div>
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
     </div>
 </section>
 
@@ -25,7 +30,7 @@
             </div>
         </div>
         <div class="card-body">
-            Start creating your amazing application!
+            <a href="{{ url('/cycle-record') }}" class="btn btn-info">input siklus anda</a>
         </div>
         <div class="card-footer">
             Footer

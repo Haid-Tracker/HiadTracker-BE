@@ -62,7 +62,7 @@
 
                         <dt class="col-sm-4">Rekomendasi Article :</dt>
                         @foreach($data->articles as $index => $article)
-                        <a href="{{ $article->id }}">
+                        <a href="{{ route('article.show', $article->id) }}">
                         <dd class="col-sm-12">
                             {{ $index + 1 }}. {{ $article->title }} [
                             @foreach($article->categories as $category)

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\CategoryArticleController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CycleRecordController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -12,7 +13,8 @@ use App\Http\Controllers\UserProfileController;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 // Frontend
-use App\Http\Controllers\Frontend\CycleRecordController as FrontendCycleRecord;
+use App\Http\Controllers\Frontend\CycleRecordController as FrontendCycleRecordController;
+use App\Http\Controllers\Frontend\ArticleController as FrontendArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +54,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('custom.password.change');
+    Route::put('/change-password', [ChangePasswordController::class, 'changePassword'])->name('custom.password.update');
+
+    Route::resource('cycle-record', FrontendCycleRecordController::class);
+    Route::get('cycle-record/{id}/delete', [FrontendCycleRecordController::class, 'destroy'])->name('cycle-record.delete');
+
+    Route::resource('article', FrontendArticleController::class);
+
 });
 
 // admin routes
@@ -101,13 +112,6 @@ Route::group(['middleware' => ['role:super-admin|admin'], 'prefix' => 'admin', '
     Route::delete('cycle-record/delete/{userId}', [CycleRecordController::class, 'destroy'])->name('cycle-record.destroy');
     Route::get('cycle-record/create', [CycleRecordController::class, 'create'])->name('cycle-record.create');
     Route::post('cycle-record/store', [CycleRecordController::class, 'store'])->name('cycle-record.store');
-});
-
-// user
-Route::middleware(['auth'])->group(function () {
-    Route::resource('cycle-record', FrontendCycleRecord::class);
-    Route::get('cycle-record/{id}/delete', [FrontendCycleRecord::class, 'destroy'])->name('cycle-record.delete');
-
 });
 
 
