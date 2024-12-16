@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <a href="{{ route('articles.create') }}" class="btn btn-primary">Add Article</a>
+                    <a href="{{ route('admin.articles.create') }}" class="btn btn-primary">Add Article</a>
                 </ol>
             </div>
         </div>
@@ -35,6 +35,7 @@
                         <th>#</th>
                         <th>Title</th>
                         <th>Hero Photo</th>
+                        <th>Categories</th>
                         <th>Author</th>
                         <th>Created At</th>
                         <th>Action</th>
@@ -54,19 +55,24 @@
                                 No Photo
                             @endif
                         </td>
+                        <td>
+                            @foreach($article->categories as $category)
+                                <span class="badge badge-info">{{ $category->name }}</span>
+                            @endforeach
+                        </td>
                         <td>{{ $article->author }}</td>
                         <td>{{ $article->created_at->format('d M Y H:i') }}</td>
                         <td>
-                            <a href="{{ route('articles.preview', $article->id) }}" class="btn btn-sm btn-success">
+                            <a href="{{ route('admin.articles.preview', $article->id) }}" class="btn btn-sm btn-success">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-sm btn-info">
+                            <a href="{{ route('admin.articles.edit', $article->id) }}" class="btn btn-sm btn-info">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-danger"
                                     data-toggle="modal"
                                     data-target="#deleteModal"
-                                    data-delete-url="{{ route('articles.destroy', $article->id) }}">
+                                    data-delete-url="{{ route('admin.articles.destroy', $article->id) }}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>

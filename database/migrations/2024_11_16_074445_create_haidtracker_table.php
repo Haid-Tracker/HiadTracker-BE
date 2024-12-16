@@ -19,8 +19,7 @@ return new class extends Migration
             $table->decimal('weight', 5, 2);
             $table->decimal('height', 5, 2);
             $table->string('photo')->nullable();
-            $table->integer('cycle_length');
-            $table->date('last_period_date');
+            // $table->integer('cycle_length');
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -35,10 +34,11 @@ return new class extends Migration
             $table->uuid('user_id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->date('predicted_date');
-            $table->enum('blood_volume', ['light', 'medium', 'heavy']);
-            $table->json('symptoms');
+            $table->string('predicted_date', 100);
+            $table->string('blood_volume', 25);
+            // $table->json('symptoms');
             $table->string('mood', 50);
+            $table->boolean('cycle_regularity');
             $table->boolean('medication');
             $table->text('notes')->nullable();
             $table->timestamps();
@@ -46,6 +46,27 @@ return new class extends Migration
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
+                  ->onDelete('cascade');
+        });
+
+        Schema::create('symptoms', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('name', 50)->unique();
+            $table->timestamps();
+        });
+
+        // Create pivot table
+        Schema::create('record_has_symptoms', function (Blueprint $table) {
+            $table->uuid('cycle_record_id');
+            $table->uuid('symptom_id');
+
+            $table->foreign('cycle_record_id')
+                  ->references('id')
+                  ->on('cycle_records')
+                  ->onDelete('cascade');
+            $table->foreign('symptom_id')
+                  ->references('id')
+                  ->on('symptoms')
                   ->onDelete('cascade');
         });
 
@@ -57,6 +78,45 @@ return new class extends Migration
             $table->longText('content');
             $table->string('author', 100)->default('Haid Tracker - Team');
             $table->timestamps();
+        });
+
+        Schema::create('category_article', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('article_has_categories', function (Blueprint $table) {
+            $table->uuid('article_id');
+            $table->uuid('category_id');
+
+            $table->foreign('article_id')
+                  ->references('id')
+                  ->on('articles')
+                  ->onDelete('cascade');
+            $table->foreign('category_id')
+                  ->references('id')
+                  ->on('category_article')
+                  ->onDelete('cascade');
+
+            $table->primary(['article_id', 'category_id']);
+        });
+
+        // record article
+        Schema::create('record_has_articles', function (Blueprint $table) {
+            $table->uuid('cycle_record_id');
+            $table->uuid('article_id');
+
+            $table->foreign('cycle_record_id')
+                  ->references('id')
+                  ->on('cycle_records')
+                  ->onDelete('cascade');
+            $table->foreign('article_id')
+                  ->references('id')
+                  ->on('articles')
+                  ->onDelete('cascade');
+
+            $table->primary(['cycle_record_id', 'article_id']);
         });
 
         // Create Feedback table
@@ -83,6 +143,9 @@ return new class extends Migration
         Schema::dropIfExists('feedback');
         Schema::dropIfExists('articles');
         Schema::dropIfExists('cycle_records');
+        Schema::dropIfExists('symptoms');
         Schema::dropIfExists('profiles');
+        Schema::dropIfExists('article_has_categories');
+        Schema::dropIfExists('category_article');
     }
 };

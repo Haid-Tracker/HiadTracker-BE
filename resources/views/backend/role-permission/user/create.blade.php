@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ url('users') }}">Users</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/users') }}">Users</a></li>
                     <li class="breadcrumb-item active">Create</li>
                 </ol>
             </div>
@@ -35,7 +35,7 @@
             <div class="card-header">
                 <h3 class="card-title">User Information</h3>
             </div>
-            <form action="{{ url('users') }}" method="POST">
+            <form action="{{ url('admin/users') }}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -61,7 +61,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="{{ url('users') }}" class="btn btn-default float-right">Cancel</a>
+                    <a href="{{ url('admin/users') }}" class="btn btn-default float-right">Cancel</a>
                 </div>
             </form>
         </div>

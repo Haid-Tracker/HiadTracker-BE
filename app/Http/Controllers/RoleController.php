@@ -44,7 +44,7 @@ class RoleController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect('roles')->with('status','Role Created Successfully');
+        return redirect('admin/roles')->with('status','Role Created Successfully');
     }
 
     public function edit(Role $role)
@@ -69,7 +69,7 @@ class RoleController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect('roles')->with('status','Role Updated Successfully');
+        return redirect('admin/roles')->with('status','Role Updated Successfully');
     }
 
     public function destroy($roleId)
@@ -77,7 +77,7 @@ class RoleController extends Controller
         $role = Role::find($roleId);
 
         $role->delete();
-        return redirect('roles')->with('status','Role Deleted Successfully');
+        return redirect('admin/roles')->with('status','Role Deleted Successfully');
     }
 
     public function addPermissionToRole($roleId)

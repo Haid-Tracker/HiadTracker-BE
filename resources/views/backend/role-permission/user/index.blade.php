@@ -10,7 +10,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     @can('create user')
-                    <a href="{{ url('users/create') }}" class="btn btn-primary">Add User</a>
+                    <a href="{{ url('admin/users/create') }}" class="btn btn-primary">Add User</a>
                     @endcan
                 </ol>
             </div>
@@ -28,7 +28,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Users List</h3>
+            <h3 class="card-title">Users Lists</h3>
         </div>
         <div class="card-body">
             <table id="example1" class="table table-bordered table-hover">
@@ -56,13 +56,13 @@
                         </td>
                         <td>
                             @can('update user')
-                            <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-sm btn-info">
+                            <a href="{{ url('admin/users/'.$user->id.'/edit') }}" class="btn btn-sm btn-info">
                                 <i class="fas fa-edit"></i>
                             </a>
                             @endcan
 
                             @can('delete user')
-                            <a href="{{ url('users/'.$user->id.'/delete') }}" class="btn btn-sm btn-danger">
+                            <a href="{{ url('admin/users/'.$user->id.'/delete') }}" class="btn btn-sm btn-danger">
                                 <i class="fas fa-trash"></i>
                             </a>
                             @endcan

@@ -35,7 +35,6 @@ class UserProfileController extends Controller
             'height'            => 'required|numeric',
             'photo'             => 'nullable|image|max:2048',
             'cycle_length'      => 'required|integer',
-            'last_period_date'  => 'required|date'
         ]);
 
         $data = $request->all();
@@ -73,13 +72,11 @@ class UserProfileController extends Controller
             'height'            => 'required|numeric',
             'photo'             => 'nullable|image|max:2048',
             'cycle_length'      => 'required|integer',
-            'last_period_date'  => 'required|date'
         ]);
 
         $data = $request->all();
 
         if ($request->hasFile('photo')) {
-            // Hapus foto lama jika ada
             if ($profile->photo) {
                 Storage::delete('public/assets/images/profile/' . $profile->photo);
             }

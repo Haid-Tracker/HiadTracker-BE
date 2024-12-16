@@ -11,8 +11,12 @@
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <span class="dropdown-item dropdown-header">Hi, {{ Auth::user()->name }}</span>
             <div class="dropdown-divider"></div>
-            <a href="{{ route('profile.edit') }}" class="dropdown-item">
+            <a href="{{ route('profile.edit', ['id' => Auth::user()->id]) }}" class="dropdown-item">
                 <i class="fas fa-user mr-2"></i> profile
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="{{ route('custom.password.change') }}" class="dropdown-item">
+                <i class="fas fa-key mr-2"></i> Ganti Password
             </a>
             <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">

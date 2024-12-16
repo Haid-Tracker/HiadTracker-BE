@@ -10,7 +10,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     @can('create role')
-                    <a href="{{ url('roles/create') }}" class="btn btn-primary">Add Role</a>
+                    <a href="{{ url('admin/roles/create') }}" class="btn btn-primary">Add Role</a>
                     @endcan
                 </ol>
             </div>
@@ -45,18 +45,18 @@
                         <td>{{ $role->id }}</td>
                         <td>{{ $role->name }}</td>
                         <td>
-                            <a href="{{ url('roles/'.$role->id.'/give-permissions') }}" class="btn btn-sm btn-warning">
+                            <a href="{{ url('admin/roles/'.$role->id.'/give-permissions') }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-key"></i> Permissions
                             </a>
 
                             @can('update role')
-                            <a href="{{ url('roles/'.$role->id.'/edit') }}" class="btn btn-sm btn-info">
+                            <a href="{{ url('admin/roles/'.$role->id.'/edit') }}" class="btn btn-sm btn-info">
                                 <i class="fas fa-edit"></i>
                             </a>
                             @endcan
 
                             @can('delete role')
-                            <a href="{{ url('roles/'.$role->id.'/delete') }}" class="btn btn-sm btn-danger">
+                            <a href="{{ url('admin/roles/'.$role->id.'/delete') }}" class="btn btn-sm btn-danger">
                                 <i class="fas fa-trash"></i>
                             </a>
                             @endcan

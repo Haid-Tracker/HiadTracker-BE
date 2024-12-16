@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('user-profiles.index') }}">User Profiles</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.user-profiles.index') }}">User Profiles</a></li>
                     <li class="breadcrumb-item active">Create</li>
                 </ol>
             </div>
@@ -35,7 +35,7 @@
             <div class="card-header">
                 <h3 class="card-title">Profile Information</h3>
             </div>
-            <form action="{{ route('user-profiles.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.user-profiles.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -66,14 +66,10 @@
                         <label>Cycle Length (days)</label>
                         <input type="number" class="form-control" name="cycle_length" value="{{ old('cycle_length') }}">
                     </div>
-                    <div class="form-group">
-                        <label>Last Period Date</label>
-                        <input type="date" class="form-control" name="last_period_date" value="{{ old('last_period_date') }}">
-                    </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="{{ route('user-profiles.index') }}" class="btn btn-default float-right">Cancel</a>
+                    <a href="{{ route('admin.user-profiles.index') }}" class="btn btn-default float-right">Cancel</a>
                 </div>
             </form>
         </div>

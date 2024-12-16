@@ -10,7 +10,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     @can('create permission')
-                    <a href="{{ url('permissions/create') }}" class="btn btn-primary">Add Permission</a>
+                    <a href="{{ url('admin/permissions/create') }}" class="btn btn-primary">Add Permission</a>
                     @endcan
                 </ol>
             </div>
@@ -46,13 +46,13 @@
                         <td>{{ $permission->name }}</td>
                         <td>
                             @can('update permission')
-                            <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-sm btn-info">
+                            <a href="{{ url('admin/permissions/'.$permission->id.'/edit') }}" class="btn btn-sm btn-info">
                                 <i class="fas fa-edit"></i>
                             </a>
                             @endcan
 
                             @can('delete permission')
-                            <a href="{{ url('permissions/'.$permission->id.'/delete') }}" class="btn btn-sm btn-danger">
+                            <a href="{{ url('admin/permissions/'.$permission->id.'/delete') }}" class="btn btn-sm btn-danger">
                                 <i class="fas fa-trash"></i>
                             </a>
                             @endcan

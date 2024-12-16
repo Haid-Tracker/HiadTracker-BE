@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('articles.index') }}">Articles</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.articles.index') }}">Articles</a></li>
                     <li class="breadcrumb-item active">Preview</li>
                 </ol>
             </div>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a href="{{ route('articles.index') }}" class="btn btn-secondary">Back to List</a>
+                <a href="{{ route('admin.articles.index') }}" class="btn btn-secondary">Back to List</a>
             </div>
         </div>
     </div>

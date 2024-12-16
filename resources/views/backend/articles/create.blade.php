@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('articles.index') }}">Articles</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.articles.index') }}">Articles</a></li>
                     <li class="breadcrumb-item active">Create</li>
                 </ol>
             </div>
@@ -31,11 +31,11 @@
         </div>
         @endif
 
-        <div class="card card-primary">
+        <div class="card card-secondary">
             <div class="card-header">
                 <h3 class="card-title">Article Information</h3>
             </div>
-            <form action="{{ route('articles.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -51,13 +51,32 @@
                         <input type="file" class="form-control" name="hero_photo">
                     </div>
                     <div class="form-group">
+                        <label>Categories</label>
+                        <div class="row">
+                            @foreach ($categories as $category)
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox"
+                                            id="category_{{ $category->id }}"
+                                            name="categories[]"
+                                            value="{{ $category->id }}"
+                                            {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="category_{{ $category->id }}">
+                                            {{ $category->name }}
+                                        </label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label>Author</label>
                         <input type="text" class="form-control" name="author" value="{{ old('author', 'Haid Tracker - Team') }}">
                     </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="{{ route('articles.index') }}" class="btn btn-default float-right">Cancel</a>
+                    <a href="{{ route('admin.articles.index') }}" class="btn btn-default float-right">Cancel</a>
                 </div>
             </form>
         </div>

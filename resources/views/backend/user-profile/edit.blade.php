@@ -76,10 +76,6 @@
                         <label>Cycle Length (days)</label>
                         <input type="number" class="form-control" name="cycle_length" value="{{ old('cycle_length', $profile->cycle_length) }}">
                     </div>
-                    <div class="form-group">
-                        <label>Last Period Date</label>
-                        <input type="date" class="form-control" name="last_period_date" value="{{ old('last_period_date', $profile->last_period_date) }}">
-                    </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Update</button>

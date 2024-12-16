@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\CategoryArticle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,13 +11,15 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::latest()->get();
+        // $articles = Article::latest()->get();
+        $articles = Article::latest()->with('categories')->get();
         return view('backend.articles.index', compact('articles'));
     }
 
     public function create()
     {
-        return view('backend.articles.create');
+        $categories = CategoryArticle::all();
+        return view('backend.articles.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -25,7 +28,8 @@ class ArticleController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'hero_photo' => 'nullable|image|max:2048',
-            'author' => 'sometimes|max:100'
+            'author' => 'sometimes|max:100',
+            'categories' => 'array|exists:category_article,id',
         ]);
 
         $data = $request->all();
@@ -39,14 +43,20 @@ class ArticleController extends Controller
 
         $data['author'] = $data['author'] ?? 'Haid Tracker - Team';
 
-        Article::create($data);
-        return redirect()->route('articles.index')->with('status', 'Article created successfully');
+        $article = Article::create($data);
+
+        if ($request->has('categories')) {
+            $article->categories()->attach($request->input('categories'));
+        }
+
+        return redirect()->route('admin.articles.index')->with('status', 'Article created successfully');
     }
 
     public function edit($id)
     {
-        $article = Article::findOrFail($id);
-        return view('backend.articles.edit', compact('article'));
+        $article = Article::with('categories')->findOrFail($id);
+        $categories = CategoryArticle::all();
+        return view('backend.articles.edit', compact('article', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -57,7 +67,8 @@ class ArticleController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'hero_photo' => 'nullable|image|max:2048',
-            'author' => 'sometimes|max:100'
+            'author' => 'sometimes|max:100',
+            'categories' => 'array|exists:category_article,id',
         ]);
 
         $data = $request->all();
@@ -76,7 +87,11 @@ class ArticleController extends Controller
         $data['author'] = $data['author'] ?? 'Haid Tracker - Team';
 
         $article->update($data);
-        return redirect()->route('articles.index')->with('status', 'Article updated successfully');
+
+        if ($request->has('categories')) {
+            $article->categories()->sync($request->input('categories'));
+        }
+        return redirect()->route('admin.articles.index')->with('status', 'Article updated successfully');
     }
 
     public function destroy($id)
@@ -88,7 +103,7 @@ class ArticleController extends Controller
         }
 
         $article->delete();
-        return redirect()->route('articles.index')->with('status', 'Article deleted successfully');
+        return redirect()->route('admin.articles.index')->with('status', 'Article deleted successfully');
     }
 
     public function preview($id)
