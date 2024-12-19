@@ -17,7 +17,7 @@
           <div class="col-md-6">
             <div class="card p-4 shadow-sm">
               <h2 class="text-center text-danger mb-4">Data Akun</h2>
-              <form method="POST" action="{{ route('profile.update', $user->id) }}">
+              <form method="POST" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="mb-3">
@@ -54,6 +54,16 @@
                   @error('height')
                   <div class="invalid-feedback">{{ $message }}</div>
               @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Foto Profil</label>
+                    <input type="file" class="form-control" id="photo" name="photo">
+                    @if($user->profile->photo ?? false)
+                        <img src="{{ asset('storage/' . $user->profile->photo) }}" alt="Foto Profil" class="img-thumbnail mt-2" style="max-width: 150px;">
+                    @endif
+                    @error('photo')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-danger">Simpan</button>
