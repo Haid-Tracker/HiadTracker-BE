@@ -5,6 +5,8 @@
 /public/storage
 /storage/*.key
 /vendor
+/HaidTracker-BE
+
 zzz-kurang.txt
 zzz-prompt.txt
 # .env
