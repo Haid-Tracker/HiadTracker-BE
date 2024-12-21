@@ -1,0 +1,105 @@
+/* navbar dan profil*/
+
+@media screen and (max-width: 376px) {
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .navbar .logo h1 {
+      font-size: 25px;
+    }
+
+    .navbar .logo img {
+      height: 30px;
+      width: 30px;
+    }
+    .profile-pic {
+      width: 35px;
+      height: 35px;
+      right: 50px;
+    }
+  }
+
+  /* navbar dan profile */
+
+  /* Data Diri */
+  @media (max-width: 768px) {
+    .edit-button {
+      margin-top: 10px;
+      height: 45px;
+      font-size: 14px;
+    }
+
+    .button-container-1,
+    .button-container-2 {
+      padding: 10px 0;
+    }
+  }
+
+  /* Data Diri */
+
+  /* Edit diri */
+  @media (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container1 {
+      padding-top: 50px;
+      max-width: 60%;
+    }
+
+    .container2 {
+      padding-top: 5px;
+      max-width: 60%;
+    }
+
+    .save-button {
+      margin-top: 10px;
+      height: 45px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 1025px) {
+    .main-content {
+      flex-direction: row;
+    }
+
+    .container1 {
+      padding-top: 50px;
+      max-width: 60%;
+    }
+
+    .container2 {
+      padding-top: 5px;
+      max-width: 60%;
+    }
+  }
+  /* Edit diri */
+
+  /* footer */
+  @media (max-width: 768px) {
+    .childfooter h1 {
+      font-size: 18px;
+    }
+
+    .childfooter img {
+      width: 25px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .childfooter h1 {
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .childfooter img {
+      width: 25px;
+      margin-left: 3px;
+      height: 25px;
+    }
+  }
+  /* footer */
