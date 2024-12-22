@@ -140,7 +140,7 @@ class CycleRecordController extends Controller
             }
         }
 
-        return redirect()->route('cycle-record.index')
+        return redirect()->route('cycle-record.create')
             ->with('success', 'Catatan siklus berhasil ditambahkan.');
     }
 

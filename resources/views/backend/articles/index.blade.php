@@ -48,8 +48,7 @@
                         <td>{{ $article->title }}</td>
                         <td>
                             @if($article->hero_photo)
-                                {{-- <img src="{{ asset('storage/assets/images/articles/' . $article->hero_photo) }}" --}}
-                                <img src="{{ $article->hero_photo }}"
+                                <img src="{{ asset('storage/assets/images/articles/' . $article->hero_photo) }}"
                                      alt="Hero Photo"
                                      style="max-width: 100px;">
                             @else

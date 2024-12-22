@@ -19,9 +19,7 @@ return new class extends Migration
             $table->decimal('weight', 5, 2)->nullable();
             $table->decimal('height', 5, 2)->nullable();
             $table->string('photo')->nullable();
-            // $table->integer('cycle_length');
             $table->timestamps();
-
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="dicoding:email" content="sanayaalmatin@gmail.com">
   <title>AdminLTE 3 | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
