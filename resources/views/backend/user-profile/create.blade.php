@@ -60,11 +60,17 @@
                     </div>
                     <div class="form-group">
                         <label>Photo</label>
-                        <input type="file" class="form-control" name="photo">
-                    </div>
-                    <div class="form-group">
-                        <label>Cycle Length (days)</label>
-                        <input type="number" class="form-control" name="cycle_length" value="{{ old('cycle_length') }}">
+                        <div class="avatar-upload">
+                            <!-- Input File -->
+                            <div class="avatar-edit">
+                                <input type="file" class="form-control" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg, .gif">
+                                <label for="imageUpload"><i class="fas fa-pen"></i></label>
+                            </div>
+                            <!-- Preview Gambar -->
+                            <div class="avatar-preview">
+                                <div id="imagePreview" style="background-image: url(''); max-width: 200px; height: 200px; background-size: cover;"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -84,5 +90,22 @@
             theme: 'bootstrap4'
         });
     });
+</script>
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imageUpload").change(function() {
+    readURL(this);
+});
 </script>
 @endsection

@@ -13,17 +13,40 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+
+  <style>
+    body{
+        background: white !important;
+    }
+    .top {
+        background-color: #6b0d0d;
+        padding: 10px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 9999;
+    }
+    button[type=submit] {
+        background: #6b0d0d;
+        border: none;
+    }
+    button[type=submit]:hover {
+        background: #7a0e0e;
+        border: none;
+    }
+  </style>
 </head>
 <body class="hold-transition login-page">
+<div class="top"></div>
 <div class="login-box">
-  <div class="login-logo">
-    <a href="#"><b>HAID</b>Tracker</a>
+  <div class="login-logo d-flex justify-content-center mx-0">
+    <a href="/admin/login"><b>Haid</b>Tracker</a>
+    <img src="{{ asset('assets/frontend/img/LandingPage/noto_drop-of-blood.png') }}" alt="HaidTracker Logo" class="brand-image img-circle" style="opacity: .8">
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Login Admin</p>
-
       <form action="{{ route('admin.login.submit') }}" method="POST">
         @csrf
 
@@ -53,7 +76,7 @@
 
         <div class="row">
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-block" style="color: #fff;">Sign In</button>
           </div>
         </div>
       </form>

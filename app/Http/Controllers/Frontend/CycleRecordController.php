@@ -11,23 +11,46 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Illuminate\Support\Facades\View;
 
 class CycleRecordController extends Controller
 {
     public function index()
     {
         $datas = CycleRecord::where('user_id', Auth::id())
-            ->latest()
             ->with(['feedback'])
+            ->latest()
             ->get();
 
-        return view('frontend.cycle-records.index', compact('datas'));
+        if ($datas->isEmpty()) {
+            return redirect()->route('cycle-record.create');
+        }
+
+        $datas->map(function ($cycleRecord) {
+            $cycleRecord->durationCycle = Carbon::parse($cycleRecord->end_date)
+                ->diffInDays(Carbon::parse($cycleRecord->start_date)) + 1;
+        });
+
+        $chunkedDatas = $datas->chunk(3);
+        $initialDatas = $chunkedDatas->first();
+        $remainingDatas = $chunkedDatas->slice(1)->collapse();
+
+        return view('frontend.cycle-records.index', compact('initialDatas', 'remainingDatas'));
     }
 
     public function create()
     {
         $symptoms = Symptom::all();
-        return view('frontend.cycle-records.create', compact('symptoms'));
+        $prediction = $this->getPredictionDates();
+        $lastRecord = CycleRecord::where('user_id', Auth::id())
+        ->with('articles')
+        ->latest('start_date')
+        ->first();
+        $article = $lastRecord ? $lastRecord->articles->first() : null;
+
+        return view('frontend.cycle-records.create', compact('symptoms', 'prediction', 'article'));
     }
 
     public function store(Request $request)
@@ -121,13 +144,15 @@ class CycleRecordController extends Controller
             ->with('success', 'Catatan siklus berhasil ditambahkan.');
     }
 
-    public function show(string $id)
+    public function show($id)
     {
         $data = CycleRecord::with(['symptoms', 'feedback'])
             ->where('user_id', Auth::id())
             ->findOrFail($id);
 
-        return view('frontend.cycle-records.show', compact('data'));
+        $durationCycle = Carbon::parse($data->end_date)->diffInDays(Carbon::parse($data->start_date)) + 1;
+
+        return view('frontend.cycle-records.show', compact('data', 'durationCycle'));
     }
 
     public function edit($id)
@@ -319,20 +344,20 @@ class CycleRecordController extends Controller
      /**
       * Menghasilkan pesan feedback berdasarkan status dan alasan abnormal
       */
-     private function generateFeedbackMessage($isNormal, $reasons = [])
-     {
-         if ($isNormal) {
-             return 'Siklus menstruasi Anda NORMAL.';
-         }
+      private function generateFeedbackMessage($isNormal, $reasons = [])
+      {
+          if ($isNormal) {
+              return 'Siklus menstruasi Anda NORMAL. Tetap pertahankan dan selalu jaga kesehatan dengan makan teratur, olahraga secara rutin, dan memperhatikan kebersihan diri. Jangan lupa untuk terus mencatat siklus menstruasi Anda secara teratur.';
+          }
 
-         $feedback = "Siklus menstruasi Anda ABNORMAL karena:\n";
-         foreach ($reasons as $reason) {
-             $feedback .= "- {$reason}\n";
-         }
-         $feedback .= "\nSilakan baca artikel rekomendasi berikut untuk informasi lebih lanjut.";
+          $feedback = "Siklus menstruasi Anda ABNORMAL karena:\n";
+          foreach ($reasons as $reason) {
+              $feedback .= "- {$reason}\n";
+          }
+          $feedback .= "\nSilakan baca artikel rekomendasi berikut untuk informasi lebih lanjut dan konsultasikan dengan dokter jika diperlukan.";
 
-         return $feedback;
-     }
+          return $feedback;
+      }
 
      private function getRecommendedCategories($cycleRecord, $validatedData)
      {
@@ -400,4 +425,116 @@ class CycleRecordController extends Controller
 
          return array_unique($categories);
      }
+
+     private function getPredictionDates()
+    {
+        // Ambil record terakhir user
+        $lastRecord = CycleRecord::where('user_id', Auth::id())
+            ->with('feedback')
+            ->latest('start_date')
+            ->first();
+
+        if (!$lastRecord) {
+            return [
+                'dates' => null,
+                'month_year' => null,
+                'feedback' => null,
+            ];
+        }
+
+        $durationCycle = Carbon::parse($lastRecord->end_date)
+            ->diffInDays(Carbon::parse($lastRecord->start_date)) + 1;
+
+        $previousCycle = CycleRecord::where('user_id', Auth::id())
+            ->where('id', '!=', $lastRecord->id)
+            ->orderBy('start_date', 'desc')
+            ->first();
+
+        $lengthCycle = $previousCycle ?
+            Carbon::parse($lastRecord->start_date)->diffInDays(Carbon::parse($previousCycle->start_date))
+            : null;
+
+        // Tentukan status normal dan dapatkan alasan jika abnormal
+        $isNormal = $this->determineCycleStatus(
+            $lengthCycle,
+            $durationCycle,
+            $lastRecord->blood_volume,
+            $lastRecord->cycle_regularity
+        );
+
+        $abnormalityReasons = $this->getAbnormalityReasons(
+            $lengthCycle,
+            $durationCycle,
+            $lastRecord->blood_volume,
+            $lastRecord->cycle_regularity
+        );
+
+        // Generate pesan feedback
+        $feedbackMessage = $this->generateFeedbackMessage($isNormal, $abnormalityReasons);
+
+        if ($lengthCycle) {
+            $minPredictedDate = Carbon::parse($lastRecord->start_date)->addDays(21);
+            $maxPredictedDate = Carbon::parse($lastRecord->start_date)->addDays(35);
+        } else {
+            $minPredictedDate = Carbon::parse($lastRecord->end_date)->addDays(21 - $durationCycle);
+            $maxPredictedDate = Carbon::parse($lastRecord->end_date)->addDays(35 - $durationCycle);
+        }
+
+        return [
+            'dates' => $minPredictedDate->format('d').'-'.$maxPredictedDate->format('d'),
+            'month_year' => $maxPredictedDate->format('F, Y'),
+            'feedback' => $feedbackMessage,  // Gunakan pesan feedback yang baru digenerate
+        ];
+    }
+
+    public function generateShowPdf($id)
+    {
+        $data = CycleRecord::with(['symptoms', 'feedback'])
+            ->where('user_id', Auth::id())
+            ->findOrFail($id);
+        $durationCycle = Carbon::parse($data->end_date)->diffInDays(Carbon::parse($data->start_date)) + 1;
+
+        $view = View::make('frontend.cycle-records.pdf.show', compact('data', 'durationCycle'))->render();
+
+        $dompdf = new Dompdf();
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+
+        $dompdf->setOptions($options);
+
+        $dompdf->loadHtml($view);
+
+        $dompdf->render();
+
+        return $dompdf->stream("cycle_record_{$data->start_date}.pdf", ["Attachment" => false]);
+    }
+
+    public function generateIndexPdf()
+    {
+        $datas = CycleRecord::where('user_id', Auth::id())
+            ->with(['feedback', 'symptoms'])
+            ->latest()
+            ->get();
+
+        $datas->map(function($cycleRecord) {
+            $cycleRecord->durationCycle = Carbon::parse($cycleRecord->end_date)
+                ->diffInDays(Carbon::parse($cycleRecord->start_date)) + 1;
+        });
+
+        $view = View::make('frontend.cycle-records.pdf.index', compact('datas'))->render();
+
+        $dompdf = new Dompdf();
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $options->set('isRemoteEnabled', true);
+        $options->set('chroot', public_path());
+        $dompdf->setOptions($options);
+
+        $dompdf->loadHtml($view);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        return $dompdf->stream("all_cycle_records.pdf", ["Attachment" => false]);
+    }
 }

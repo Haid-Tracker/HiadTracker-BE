@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('user-profiles.index') }}">User Profiles</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.user-profiles.index') }}">User Profiles</a></li>
                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </div>
@@ -35,7 +35,7 @@
             <div class="card-header">
                 <h3 class="card-title">Edit Profile Information</h3>
             </div>
-            <form action="{{ route('user-profiles.update', $profile->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.user-profiles.update', $profile->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="card-body">
@@ -63,23 +63,24 @@
                     </div>
                     <div class="form-group">
                         <label>Photo</label>
-                        @if($profile->photo)
-                            <div class="mb-2">
-                                <img src="{{ asset('storage/assets/images/profile/' . $profile->photo) }}"
-                                     alt="Profile Photo"
-                                     style="max-width: 200px;">
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type="file" class="form-control" name="photo" id="imageUpload" accept=".png, .jpg, .jpeg, .gif">
+                                <label for="imageUpload"><i class="fas fa-pen"></i></label>
                             </div>
-                        @endif
-                        <input type="file" class="form-control" name="photo">
-                    </div>
-                    <div class="form-group">
-                        <label>Cycle Length (days)</label>
-                        <input type="number" class="form-control" name="cycle_length" value="{{ old('cycle_length', $profile->cycle_length) }}">
+
+                            <div class="avatar-preview">
+                                <div id="imagePreview"
+                                     style="background-image: url('{{ $profile->photo ? asset('storage/assets/images/profile/' . $profile->photo) : '' }}');
+                                            max-width: 200px; height: 200px; background-size: cover;">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Update</button>
-                    <a href="{{ route('user-profiles.index') }}" class="btn btn-default float-right">Cancel</a>
+                    <a href="{{ route('admin.user-profiles.index') }}" class="btn btn-default float-right">Cancel</a>
                 </div>
             </form>
         </div>
@@ -94,5 +95,23 @@
             theme: 'bootstrap4'
         });
     });
+</script>
+
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+            $('#imagePreview').hide();
+            $('#imagePreview').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imageUpload").change(function() {
+    readURL(this);
+});
 </script>
 @endsection

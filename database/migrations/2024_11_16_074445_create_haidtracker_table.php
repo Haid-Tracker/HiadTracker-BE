@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
-            $table->date('birth_date');
-            $table->decimal('weight', 5, 2);
-            $table->decimal('height', 5, 2);
+            $table->date('birth_date')->nullable();
+            $table->decimal('weight', 5, 2)->nullable();
+            $table->decimal('height', 5, 2)->nullable();
             $table->string('photo')->nullable();
             // $table->integer('cycle_length');
             $table->timestamps();

@@ -7,8 +7,10 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -18,8 +20,20 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $user = User::with('profile')->findOrFail($id);
+        $birthDate = Carbon::parse($user->profile->birth_date);
+        $age = $birthDate->age;
 
-        return view('frontend.profile.edit', compact('user'));
+        return view('frontend.profile.edit', compact('user', 'age'));
+
+    }
+
+    public function card($id)
+    {
+        $user = User::with('profile')->findOrFail($id);
+        $birthDate = Carbon::parse($user->profile->birth_date); // Parse tanggal lahir ke objek Carbon
+        $age = $birthDate->age;
+
+        return view('frontend.profile.card', compact('user', 'age'));
 
     }
 
@@ -34,9 +48,20 @@ class ProfileController extends Controller
             'weight' => 'nullable|numeric',
             'birth_date' => 'nullable|date',
             'height' => 'nullable|numeric',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $user = User::findOrFail($id);
+
+        if ($request->hasFile('photo')) {
+            if ($user->profile->photo) {
+                Storage::delete('public/assets/images/profile/' . $user->profile->photo);
+            }
+            $photo = $request->file('photo');
+            $filename = uniqid() . '.' . $photo->getClientOriginalExtension();
+            $photo->storeAs('public/assets/images/profile', $filename);
+            $validated['photo'] = $filename;
+        }
 
         $user->update([
             'name' => $validated['name'],
@@ -49,6 +74,7 @@ class ProfileController extends Controller
                 'weight' => $validated['weight'],
                 'birth_date' => $validated['birth_date'],
                 'height' => $validated['height'],
+                'photo' => $validated['photo'] ?? $user->profile->photo,
             ]
         );
 
@@ -71,5 +97,13 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function fillProfile($id)
+    {
+        $user = User::with('profile')->findOrFail($id);
+
+        return view('frontend.profile.fill-profile', compact('user'));
+
     }
 }

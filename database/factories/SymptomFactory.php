@@ -9,7 +9,7 @@ class SymptomSeeder extends Seeder
 {
     public function run(): void
     {
-        $symptomNames = ['headache', 'cramps', 'backPain', 'nausea', 'fatigue', 'bloating'];
+        $symptomNames = ['painful', 'cramps', 'nausea'];
 
         foreach ($symptomNames as $name) {
             Symptom::create([

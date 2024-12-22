@@ -134,7 +134,7 @@ class CycleRecordController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $data = CycleRecord::with(['user', 'symptoms', 'feedback'])->findOrFail($id);
 
@@ -356,20 +356,20 @@ class CycleRecordController extends Controller
      /**
       * Menghasilkan pesan feedback berdasarkan status dan alasan abnormal
       */
-     private function generateFeedbackMessage($isNormal, $reasons = [])
-     {
-         if ($isNormal) {
-             return 'Siklus menstruasi Anda NORMAL.';
-         }
+      private function generateFeedbackMessage($isNormal, $reasons = [])
+      {
+          if ($isNormal) {
+              return 'Siklus menstruasi Anda NORMAL. Tetap pertahankan dan selalu jaga kesehatan dengan makan teratur, olahraga secara rutin, dan memperhatikan kebersihan diri. Jangan lupa untuk terus mencatat siklus menstruasi Anda secara teratur.';
+          }
 
-         $feedback = "Siklus menstruasi Anda ABNORMAL karena:\n";
-         foreach ($reasons as $reason) {
-             $feedback .= "- {$reason}\n";
-         }
-         $feedback .= "\nSilakan baca artikel rekomendasi berikut untuk informasi lebih lanjut.";
+          $feedback = "Siklus menstruasi Anda ABNORMAL karena:\n";
+          foreach ($reasons as $reason) {
+              $feedback .= "- {$reason}\n";
+          }
+          $feedback .= "\nSilakan baca artikel rekomendasi berikut untuk informasi lebih lanjut dan konsultasikan dengan dokter jika diperlukan.";
 
-         return $feedback;
-     }
+          return $feedback;
+      }
 
      private function getRecommendedCategories($cycleRecord, $validatedData)
      {

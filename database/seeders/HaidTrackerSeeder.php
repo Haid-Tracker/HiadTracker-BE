@@ -16,15 +16,15 @@ class HaidTrackerSeeder extends Seeder
 {
     public function run(): void
     {
-        $symptomNames = ['headache', 'cramps', 'backPain', 'nausea', 'fatigue', 'bloating'];
+        $symptomNames = ['painful', 'cramps', 'nausea'];
         foreach ($symptomNames as $name) {
             Symptom::firstOrCreate(['name' => $name]);
         }
 
         Article::factory()->count(20)->create();
         $categories = [
-            'headache', 'cramps', 'backPain', 'nausea',
-            'fatigue', 'bloating', 'normal', 'abnormal',
+            'painful', 'cramps', 'nausea',
+            'normal', 'abnormal',
             'irregular', 'general', 'blood heavy', 'duration cycle',
             'length cycle', 'happy', 'sad', 'neutral', 'tired',
         ];
@@ -47,11 +47,10 @@ class HaidTrackerSeeder extends Seeder
         foreach ($users as $user) {
             $profile = Profile::factory()->create([
                 'user_id' => $user->id,
-                'photo' => 'assets/images/profile/profile.png',
             ]);
 
             $cycleRecords = CycleRecord::factory()
-                ->count(6)
+                ->count(12)
                 ->create([
                     'user_id' => $user->id
                 ]);
@@ -59,7 +58,7 @@ class HaidTrackerSeeder extends Seeder
             foreach ($cycleRecords as $record) {
                 $symptoms = Symptom::all();
 
-                $selectedSymptoms = $symptoms->random(rand(1, 5))->pluck('id');
+                $selectedSymptoms = $symptoms->random(rand(1, 3))->pluck('id');
 
                 $record->symptoms()->attach($selectedSymptoms);
 

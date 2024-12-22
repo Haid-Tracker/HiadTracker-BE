@@ -5,12 +5,7 @@
 /public/storage
 /storage/*.key
 /vendor
-zzz-kurang.txt
-zzz-prompt.txt
-zzz-prompt2.txt
-zzz-prompt3.txt
-zzz-prediksi.txt
-# .env
+.env
 .env.backup
 .env.production
 .phpunit.result.cache

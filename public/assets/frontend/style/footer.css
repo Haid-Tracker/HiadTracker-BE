@@ -1,0 +1,31 @@
+
+  /* footer */
+  .footer {
+    display: flex;
+    background-color: #5d0a0a;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    flex-direction: row;
+  }
+
+  .childfooter {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .childfooter h1 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .childfooter img {
+    width: 30px;
+    margin-left: 5px;
+  }
+
+  /* footer */
+

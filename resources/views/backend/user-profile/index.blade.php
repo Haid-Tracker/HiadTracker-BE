@@ -38,7 +38,6 @@
                         <th>Birth Date</th>
                         <th>Weight</th>
                         <th>Height</th>
-                        <th>Cycle Length</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -59,7 +58,6 @@
                         <td>{{ $profile->birth_date }}</td>
                         <td>{{ $profile->weight }} kg</td>
                         <td>{{ $profile->height }} cm</td>
-                        <td>{{ $profile->cycle_length }} days</td>
                         <td>
                             <a href="{{ route('admin.user-profiles.edit', $profile->id) }}" class="btn btn-sm btn-info">
                                 <i class="fas fa-edit"></i>

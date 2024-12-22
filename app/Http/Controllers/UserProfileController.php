@@ -34,7 +34,6 @@ class UserProfileController extends Controller
             'weight'            => 'required|numeric',
             'height'            => 'required|numeric',
             'photo'             => 'nullable|image|max:2048',
-            'cycle_length'      => 'required|integer',
         ]);
 
         $data = $request->all();
@@ -47,7 +46,7 @@ class UserProfileController extends Controller
         }
 
         UserProfile::create($data);
-        return redirect()->route('user-profiles.index')->with('status', 'Profile created successfully');
+        return redirect()->route('admin.user-profiles.index')->with('status', 'Profile created successfully');
     }
 
     public function edit($id)
@@ -71,7 +70,6 @@ class UserProfileController extends Controller
             'weight'            => 'required|numeric',
             'height'            => 'required|numeric',
             'photo'             => 'nullable|image|max:2048',
-            'cycle_length'      => 'required|integer',
         ]);
 
         $data = $request->all();
@@ -88,7 +86,7 @@ class UserProfileController extends Controller
         }
 
         $profile->update($data);
-        return redirect()->route('user-profiles.index')->with('status', 'Profile updated successfully');
+        return redirect()->route('admin.user-profiles.index')->with('status', 'Profile updated successfully');
     }
 
     public function destroy($id)
@@ -98,6 +96,6 @@ class UserProfileController extends Controller
             Storage::delete('public/assets/images/profile/' . $profile->photo);
         }
         $profile->delete();
-        return redirect()->route('user-profiles.index')->with('status', 'Profile deleted successfully');
+        return redirect()->route('admin.user-profiles.index')->with('status', 'Profile deleted successfully');
     }
 }
