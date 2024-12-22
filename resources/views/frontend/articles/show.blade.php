@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<main class="container">
     <article>
         <div class="title" id="title">
           {{ $article->title }}
@@ -32,7 +32,7 @@
           @endif
         </div>
     </article>
-</div>
+</main>
 
 <section class="container-child">
     <div class="artikel-section">

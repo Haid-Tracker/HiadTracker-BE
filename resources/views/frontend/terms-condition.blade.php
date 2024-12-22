@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<div class="main-content">
+<main class="main-content">
     <section class="terms-container">
       <h1>Terms & Conditions</h1>
       <div class="terms-content">
@@ -117,6 +117,6 @@
         </ul>
       </div>
     </section>
-</div>
+</main>
 
 @endsection
