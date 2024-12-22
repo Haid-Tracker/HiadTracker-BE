@@ -83,7 +83,7 @@
         akurat kapan haid berikutnya tiba, sehingga kamu bisa mempersiapkan
         diri dan merencanakan aktivitas dengan lebih baik.
       </p>
-      <a href="{{ url('cycle-record') }}" id="try-fitur" class="button">Coba Sekarang</a>
+      <a href="{{ route('cycle-record.create') }}" id="try-fitur" class="button">Coba Sekarang</a>
     </div>
   </section>
   <!-- section 4 -->

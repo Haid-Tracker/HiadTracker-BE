@@ -27,7 +27,6 @@ class AuthenticatedSessionController extends Controller
         $role = $request->user()->getRoleNames()->first();
         $profile = $request->user()->profile;
 
-        // dd($role);
         $userId = Auth::id();
         if ($role === 'user') {
             if ($profile->height == null || $profile->weight == null || $profile->birth_date == null) {

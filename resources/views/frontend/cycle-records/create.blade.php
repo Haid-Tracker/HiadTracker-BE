@@ -174,18 +174,11 @@
     <div class="container-article">
         <div class="section-prediction">
             <!-- Kolom Kiri -->
-            <div class="col-6">
+            <div id="section-2" class="col-6">
                 <!-- Konten Baru di Sini -->
                 <div class="predction-cycle">
                     <h3>Hasil Prediksi Periode Selanjutnya</h3>
                     <div class="card">
-                        {{-- <div class="card-date">
-                            <p class="card-date-title">Tanggal</p>
-                            <p class="card-date-subtitle">Periode Selanjutnya</p>
-                            <p class="card-date-number">12-25</p>
-                            <p class="card-date-month">Juli, 2024</p>
-                        </div> --}}
-                        {{-- @dd($prediction) --}}
                         <div class="card-date">
                             <p class="card-date-title">Tanggal</p>
                             <p class="card-date-subtitle">Periode Selanjutnya</p>
@@ -213,17 +206,6 @@
 
             <!-- Kolom Kanan -->
             <div class="col-6">
-                {{-- @if($article)
-                <div class="article-item">
-                    <h4>{{ $article->title }}</h4>
-                    <div class="article-content">
-                        {{ Str::limit($article->content, 200) }}
-                    </div>
-                </div>
-                @else
-                    <p>Belum ada artikel rekomendasi.</p>
-                @endif --}}
-
                 @if($article)
                 <div class="title-artikel">
                     <h3>{{ $article->title }}</h3>
@@ -343,6 +325,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    @if(session('success'))
+        Swal.fire({
+            title: 'Berhasil!',
+            text: "{{ session('success') }}",
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#28a745'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Scroll ke bagian paling bawah halaman
+                setTimeout(() => {
+                    document.querySelector('.container-article').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'end'
+                    });
+                }, 100);
+            }
+        });
+    @endif
+
 });
 </script>
 @endsection

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="dicoding:email" content="sanayaalmatin@gmail.com">
     <title>Authentikasi - HaidTracker</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/frontend/img/LandingPage/noto_drop-of-blood.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/style/Autentikasi/styles.css') }}">

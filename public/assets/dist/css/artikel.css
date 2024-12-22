@@ -1,0 +1,213 @@
+/* article */
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff !important;
+  }
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    padding-top: 100px;
+  }
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .date {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  .content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .read-more {
+    font-size: 16px;
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .container-child {
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-bottom: 90px;
+    margin-top: 90px;
+  }
+  .artikel-section {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    padding: 30px;
+    background-color: rgba(93, 10, 10, 0.95);
+  }
+  .artikel-section::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    bottom: -60px;
+    left: 20px;
+    right: 20px;
+    background-color: #d3d3d3;
+    border-radius: 10px;
+    z-index: -1;
+  }
+  .artikel-title {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 40px;
+    flex-shrink: 0;
+    text-align: left;
+    width: 250px;
+  }
+  .artikel-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .artikel-item {
+    background-color: var(--deep-red);
+    color: white;
+    overflow: hidden;
+    width: 250px;
+    /* height: 250px; */
+    position: relative;
+    margin-right: 20px;
+    margin: 0 auto;
+  }
+  .artikel-item img {
+    width: 100%;
+    height: 200px;
+    display: block;
+    object-fit: cover;
+    filter: brightness(40%);
+  }
+  .artikel-item p {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    margin: 0;
+    font-size: 14px;
+    padding: 5px;
+  }
+  /* article */
+
+  /* Efek Hover dan Zoom pada Gambar Artikel */
+.content img,
+.artikel-item img {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  border-radius: 10px;
+}
+
+.content img:hover,
+.artikel-item img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .container {
+      padding: 15px;
+      padding-top: 100px;
+    }
+
+    .title {
+      font-size: 26px;
+      text-align: center;
+    }
+
+    .content h2 {
+      font-size: 18px;
+    }
+
+    .content p {
+      font-size: 14px;
+    }
+
+    .read-more {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 10px;
+      padding-top: 100px;
+    }
+
+    .title {
+      font-size: 22px;
+      text-align: center;
+    }
+
+    .content h2 {
+      font-size: 16px;
+    }
+
+    .content p {
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .read-more {
+      font-size: 12px;
+    }
+  }
+  /* article */
+
+  /* Responsif */
+  @media (max-width: 768px) {
+    .artikel-section {
+      flex-direction: column;
+    }
+
+    .artikel-title {
+      text-align: center;
+      margin-right: 0;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .artikel-items {
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .artikel-title {
+      font-size: 20px;
+    }
+
+    .artikel-items {
+      gap: 10px;
+    }
+
+    .artikel-item p {
+      font-size: 12px;
+      padding: 3px;
+    }
+  }

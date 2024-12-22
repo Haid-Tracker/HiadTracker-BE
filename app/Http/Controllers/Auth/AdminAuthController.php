@@ -25,7 +25,7 @@ class AdminAuthController extends Controller
         $role = $request->user()->getRoleNames()->first();
 
         if ($role === 'admin' || $role === 'super-admin') {
-            return redirect()->route('admin.home');
+            return redirect()->to('admin');
         }
 
         Auth::logout();

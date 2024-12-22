@@ -22,7 +22,7 @@
                     @if (!Auth::user())
                         href="#main-content2"
                     @else
-                        href="{{ url('cycle-record') }}"
+                        href="{{ route('cycle-record.create') }}"
                     @endif
                 >Services</a>
                 </li>
@@ -45,6 +45,8 @@
                             @endif
                         />
                     </a>
+                    {{-- @dd($profile->photo) --}}
+
 
                 @else
                     <div class="user">
