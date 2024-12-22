@@ -12,8 +12,8 @@ class CategoryArticleFactory extends Factory
     public function definition(): array
     {
         $categories = [
-            'headache', 'cramps', 'backPain', 'nausea',
-            'fatigue', 'bloating', 'normal', 'abnormal',
+            'painful', 'cramps', 'nausea',
+            'normal', 'abnormal',
             'irregular', 'general', 'blood heavy', 'duration cycle',
             'length cycle', 'happy', 'sad', 'neutral', 'tired'
         ];

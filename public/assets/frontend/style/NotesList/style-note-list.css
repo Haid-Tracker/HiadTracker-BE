@@ -1,0 +1,617 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+/* navbar */
+
+.navbartop {
+  background-color: #6b0d0d;
+  padding: 10px 0;
+  position: fixed;
+  /* Perbarui */
+  width: 100%;
+  top: 0;
+  z-index: 9999;
+  /* Perbarui */
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 20px;
+  position: fixed;
+  width: 98%;
+  top: 20px;
+  /* Perbarui */
+  z-index: 9999;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 18px;
+  color: black;
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  list-style-type: none;
+}
+
+.navbar .nav-links li a {
+  margin: 0 30px;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.navbar .nav-links .btn {
+  background-color: #5d0a0a;
+  color: #fff;
+  border: none;
+  padding: 5px 30px;
+  border-radius: 5px;
+  margin-left: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar .nav-links .btn:hover {
+  background-color: #7a0e0e;
+}
+
+.navbar .nav-links .theme-toggle {
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.menu-button {
+  background-color: #ffffff;
+  margin: 20px;
+}
+
+#hamburger {
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(9, 9, 9, 0.2);
+}
+
+#hamburger.active {
+  background-color: #7a0e0e;
+}
+
+/* navbar */
+
+/* profil */
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+/* profil */
+
+.container {
+  padding-top: 120px;
+  padding-left: 60px;
+  padding-right: 60px;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.header-notes {
+  display: flex;
+  align-items: center;
+  /* Vertikal sejajar */
+  justify-content: space-between;
+  /* Button di kiri, judul di tengah */
+  position: relative;
+  /* Untuk memposisikan judul di tengah */
+  margin: 50px;
+}
+
+.header-notes h2 {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Memastikan judul berada di tengah */
+  font-size: 1.5rem;
+  text-wrap: nowrap;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.back-button svg {
+  width: 24px;
+  height: 24px;
+  color: #333;
+}
+
+.tracker {
+  display: flex;
+  flex-wrap: wrap;
+  /* Supaya tetap responsif */
+  gap: 20px;
+  background-color: #e8e8f9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+/* Kolom */
+.col-6 {
+  flex: 1 1 48%;
+  /* 48% lebar untuk 2 kolom dengan jarak antar kolom */
+  min-width: 300px;
+  /* Responsif untuk layar kecil */
+}
+
+/* Kalender di kolom kanan */
+.calendar {
+  width: 95%;
+  /* Agar sesuai dengan kolom */
+  pointer-events: auto;
+}
+
+/* Notes di kolom kanan */
+.notes {
+  width: 90%;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notes p {
+  color: #666666;
+}
+
+.notes .mood-button {
+  margin-bottom: 20px;
+}
+
+.notes .mood-button #mood-1 {
+  background-color: #f0c452;
+  border-radius: 50%;
+  border: 1px solid #3c3c43;
+}
+
+.notes .mood-button #mood-2 {
+  background-color: #3c3c43;
+  border-radius: 50%;
+  border: 1px solid #3c3c43;
+}
+
+.notes .mood-button #mood-3 {
+  background-color: #2f5d88;
+  border-radius: 50%;
+  border: 1px solid #3c3c43;
+}
+
+.notes .mood-button #mood-4 {
+  background-color: #010a4f;
+  border-radius: 50%;
+  border: 1px solid #3c3c43;
+}
+
+.notes .symptom-button {
+  margin-bottom: 20px;
+}
+
+.notes .symptom-button  #symptom-1,
+.symptom-painful {
+  background-color: #999999;
+  border-radius: 20px !important;
+  border: 1px solid #3C3C43;
+}
+
+.notes .symptom-button #symptom-2,
+.symptom-cramps {
+  background-color: #3C3C43;
+  border-radius: 20px !important;
+  color: #FFFFFF;
+  border: 1px solid #3C3C43;
+}
+
+.notes .symptom-button #symptom-3,
+.symptom-nausea {
+  background-color: #3E9C6E;
+  border-radius: 20px !important;
+  color: #FFFFFF;
+  border: 1px solid #3C3C43;
+}
+
+.notes .symptom-button #symptom-4 {
+  background-color: #EDAD08;
+  border-radius: 20px !important;
+  border: 1px solid #3C3C43;
+}
+
+.notes textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.notes button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tracker-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  /* Jarak antar tombol */
+  margin-top: 20px;
+  /* Jarak dari elemen atas */
+  width: 100%;
+  /* Pastikan tombol mengambil ruang penuh */
+}
+
+.tracker-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #800000;
+  color: white;
+}
+
+.tracker-buttons button.btn-edit {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #f0c452;
+  color: #000;
+}
+
+.tracker-buttons button.btn-remove {
+    background: #FB4141;
+}
+.tracker-buttons button.btn-remove img {
+    width: 20px;
+    height: 20px;
+}
+
+.unduh-buttons {
+    display: inline;
+    margin: 20px 0 0 0;
+    padding: 1.25em;
+    background-color: #e8e8f9;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.unduh-buttons .unduh {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #800000;
+    color: white;
+    margin-right: 15px;
+}
+
+.article {
+  margin-bottom: -20px;
+}
+
+.container-article {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.section-prediction {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #6b1212;
+  padding: 5rem;
+  color: #ffffff;
+}
+
+.selected-dates-container {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 500px;
+    margin-top: 20px;
+    background-color: #f8f9fa;
+}
+.selected-dates-container #selected-dates-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.selected-dates-container .badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #fff;
+    display: inline-block;
+    min-width: 50px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    white-space: nowrap;
+    }
+
+.selected-dates-container .badge.bg-success {
+background: #28a745;
+}
+
+.selected-dates-container .badge.bg-warning {
+background: #ffc107;
+}
+
+/* Kolom */
+.col-6 {
+  flex: 1 1 48%;
+  /* 48% lebar untuk 2 kolom dengan jarak antar kolom */
+  min-width: 300px;
+  /* Responsif untuk layar kecil */
+}
+
+/* Kalender di kolom kanan */
+.predction-cycle {
+  width: 90%;
+  /* Agar sesuai dengan kolom */
+}
+
+.card {
+  display: flex;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 600px;
+}
+
+/* Bagian tanggal */
+.card-date {
+  background-color: #e6e6e6;
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-date-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.card-date-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.card-date-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0;
+}
+
+.card-date-month {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Bagian konten */
+.card-content {
+  padding: 20px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-content h4 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.card-content p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Progress bar */
+.progress-bar {
+  background-color: #e6e6e6;
+  border-radius: 5px;
+  height: 10px;
+  width: 100%;
+  margin: 15px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #00aa00;
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+.progress-text {
+  font-size: 14px;
+  color: #333;
+  text-align: right;
+}
+
+/* Notes di kolom kanan */
+.title-artikel {
+  width: 100%;
+}
+
+.title-artikel button {
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  height: 2.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.title-artikel button:first-of-type {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Putih dengan opasitas 25% */
+  color: #ffffff;
+  /* Warna teks tetap solid putih */
+}
+
+.show-another {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 15px;
+  /* Jarak dari elemen atas */
+  margin-bottom: 40px;
+  width: 100%;
+  /* Pastikan tombol mengambil ruang penuh */
+}
+
+.show-another button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.show-another button {
+  background-color: #800000;
+  color: white;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  background-color: #5d0a0a;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+.childfooter {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.childfooter h1 {
+  color: #fff;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.childfooter img {
+  width: 30px;
+  margin-left: 5px;
+}
+
+/* footer */
+
+/* transisi */
+/* Menambahkan efek zoom pada tombol dan fokus area */
+button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+button:active {
+  transform: scale(1.05);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid #6b0d0d;
+  box-shadow: 0 0 5px rgba(107, 13, 13, 0.7);
+  transition: all 0.3s ease-in-out;
+}
+
+#btn-download {
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+#btn-download:hover {
+  transform: scale(1.1);
+}
+
+/* Animasi Navigasi Links */
+.nav-links a {
+  position: relative;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #6b0d0d;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #6b0d0d;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}

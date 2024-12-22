@@ -1,42 +1,72 @@
-<!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Notifications Dropdown Menu -->
-      @auth
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-user"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">Hi, {{ Auth::user()->name }}</span>
-            <div class="dropdown-divider"></div>
-            <a href="{{ route('profile.edit', ['id' => Auth::user()->id]) }}" class="dropdown-item">
-                <i class="fas fa-user mr-2"></i> profile
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="{{ route('custom.password.change') }}" class="dropdown-item">
-                <i class="fas fa-key mr-2"></i> Ganti Password
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item">
-                <i class="fas fa-sign-out-alt mr-2"></i> Log Out
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
+<!-- navbar -->
+<header>
+    <div class="navbartop"></div>
+        <nav class="navbar">
+            <div class="logo">
+            <h1>HAID TRACKER</h1>
+            <img
+                src="{{ asset('assets/frontend/img/LandingPage/noto_drop-of-blood.png') }}"
+                alt="Blood drop icon"
+                height="40"
+                width="40"
+            />
             </div>
-        </li>
-      @else
-        <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
-        <a href="{{ route('register') }}" class="btn btn-secondary">Register</a>
-      @endauth
+            <div id="drawer">
 
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-    </ul>
-</nav>
-  <!-- /.navbar -->
+            <ul class="nav-links">
+                <li>
+                <a href="{{ url('/') }}">Home</a>
+                </li>
+                <li>
+                <a
+                    @if (!Auth::user())
+                        href="#main-content2"
+                    @else
+                        href="{{ url('cycle-record') }}"
+                    @endif
+                >Services</a>
+                </li>
+                <li>
+                <a href="{{ route('about-us') }}">About Us</a>
+                </li>
+                @auth
+                    <a href="{{ route('profile', ['id' => Auth::user()->id]) }}">
+                        <img
+                            alt="Foto profil"
+                            class="profile-pic-1"
+                            id="profile-pic-1"
+                            @php
+                                $profile = Auth::user()->profile;
+                            @endphp
+                            @if($profile && $profile->photo == null)
+                                src="{{ url('assets/frontend/img/Profile/avatar.png') }}"
+                            @else
+                                src="{{ asset('storage/assets/images/profile/' . $profile->photo) }}"
+                            @endif
+                        />
+                    </a>
+
+                @else
+                    <div class="user">
+                        <a href="{{ url('login') }}" class="btn" id="btn-login">Login</a>
+                        <a href="{{ url('register') }}" class="btn" id="btn-signin">Register</a>
+                    </div>
+                @endauth
+            </ul>
+            </div>
+
+            <button
+            id="hamburger"
+            class="menu-button"
+            aria-label="Open Navigation Menu"
+            >
+            <img
+                src="https://img.icons8.com/?size=100&id=17551&format=png&color=000000"
+                alt=""
+                height="20"
+                width="20"
+            />
+            </button>
+        </nav>
+</header>
+<!-- navbar -->

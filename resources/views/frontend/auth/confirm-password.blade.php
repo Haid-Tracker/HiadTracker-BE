@@ -1,43 +1,58 @@
 @extends('frontend.auth.layout')
 
 @section('content')
-<section class="hold-transition login-page">
-  <div class="login-box">
-    <div class="login-logo">
-      <a href="#"><b>Haid</b>Tracker</a>
+<div class="container">
+    <!-- Left Section with Image -->
+    <div class="left">
+        <div class="icon-placeholder">
+            <img src="{{ asset('assets/frontend/img/Autentikasi/drop-of-blood.png') }}" alt="Blood Icon">
+        </div>
+        <h1>Buat catatan siklus haid kamu lebih mudah dengan <span>HaidTracker</span></h1>
     </div>
 
-    <div class="card">
-      <div class="card-body login-card-body">
-        <p class="login-box-msg">Confirm Password</p>
+    <!-- Right Section with Confirm Password Form -->
+    <div class="right">
+        <h2>Konfirmasi Password</h2>
+        <p>Ini adalah area aman dari aplikasi. Harap konfirmasi password Anda sebelum melanjutkan.</p>
 
-        <div class="mb-4 text-sm text-gray-600">
-          {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-        </div>
-
+        <!-- Confirm Password Form -->
         <form method="POST" action="{{ route('password.confirm') }}">
-          @csrf
+            @csrf
 
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Password" required autofocus>
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
+            <!-- Password Input -->
+            <div class="input-group">
+                <input id="password" type="password" class="form-control" name="password" placeholder="Password" required autofocus>
+                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password show-password"></span>
             </div>
             @error('password')
-              <span class="text-danger text-sm">{{ $message }}</span>
+                <span class="text-danger text-sm">{{ $message }}</span>
             @enderror
-          </div>
 
-          <div class="row">
-            <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Confirm Password</button>
-            </div>
-          </div>
+            <!-- Submit Button -->
+            <button type="submit" class="btn">Konfirmasi Password</button>
+
         </form>
-      </div>
     </div>
-  </div>
-</section>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const togglePassword = document.querySelector(".toggle-password");
+        const passwordField = document.querySelector("#password");
+
+        togglePassword.addEventListener("click", () => {
+            // Toggle type password/visible
+            const type =
+                passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+
+            // Toggle icon
+            togglePassword.classList.toggle("fa-eye");
+            togglePassword.classList.toggle("fa-eye-slash");
+        });
+    });
+    // CDN JS Fontawesome
+    src = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js";
+    defer;
+</script>
 @endsection

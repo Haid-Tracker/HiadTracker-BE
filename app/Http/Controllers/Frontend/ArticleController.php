@@ -38,7 +38,9 @@ class ArticleController extends Controller
     public function show(string $id)
     {
         $article = Article::findOrFail($id);
-        return view('frontend.articles.show', compact('article'));
+        $randomArticles = Article::inRandomOrder()->limit(3)->get();
+
+        return view('frontend.articles.show', compact('article', 'randomArticles'));
     }
 
     /**

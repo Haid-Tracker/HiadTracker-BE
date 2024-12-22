@@ -12,23 +12,45 @@
 </section>
 
 <section class="content">
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Title</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                <i class="fas fa-times"></i>
-              </button>
+    <div class="row d-flex justify-content-between">
+        <!-- Profile Count -->
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>{{ $profileCount }}</h3>
+                    <p>Profiles</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person"></i>
+                </div>
+                <a href="{{ url('admin/user-profiles') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="card-body">
-            Start creating your amazing application!
+        <!-- CycleRecord Count -->
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{ $cycleRecordCount }}</h3>
+                    <p>Cycle Records</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-calendar"></i>
+                </div>
+                <a href="{{ url('admin/cycle-record') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
         </div>
-        <div class="card-footer">
-            Footer
+        <!-- Article Count -->
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ $articleCount }}</h3>
+                    <p>Articles</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-document-text"></i>
+                </div>
+                <a href="{{ url('admin/articles') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
         </div>
     </div>
 </section>

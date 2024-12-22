@@ -1,0 +1,277 @@
+@import url("../warna.css");
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* navbar */
+.navbartop {
+  background-color: var(--dark-red-3);
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 9999;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 9998;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+}
+
+.logo .icon {
+  margin: 20px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 30px;
+}
+
+/* navbar */
+
+/* profil */
+.profile-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  right: 70px;
+}
+/* profil */
+
+/* Data Diri */
+#data-diri-section {
+  flex: 1;
+}
+/* container 1 */
+#data-diri {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+
+.input-group span {
+  font-size: 14px;
+  color: var(--gray-2);
+}
+
+#data-diri span {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--deep-red);
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+  background-color: #fff;
+  margin-top: 5px;
+  color: var(--gray-2);
+}
+
+/* container 1 */
+
+/* container 2 */
+/* Sudah ada pada Edit Data Diri */
+/* container 2 */
+
+/* button-edit */
+.button-container-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 10px;
+  margin-top: 40px;
+  gap: 20px;
+  text-decoration: none !important;
+}
+
+.edit-button {
+  margin-top: 20px;
+  padding: 10px 40px;
+  background-color: var(--deep-red);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/* button-edit */
+
+/* Data Diri */
+
+/* Edit Data Diri */
+#edit-data-diri-section {
+  flex: 1;
+}
+/* container 1 */
+.edit-data-diri {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  flex-wrap: wrap;
+}
+
+.container1 {
+  max-width: 400px;
+  width: 100%;
+  padding-top: 70px;
+  padding-right: 40px;
+  padding-left: 20px;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 550;
+  color: var(--gray-2);
+}
+
+.input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--deep-red);
+  border-radius: 20px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* container 1 */
+
+/* container 2 */
+.container2 {
+  max-width: 400px;
+  padding-top: 115px;
+  padding-right: 40px;
+  padding-left: 20px;
+  width: 100%;
+}
+
+/* container 2 */
+
+/* button-simpan */
+.button-container-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 10px;
+  margin-top: 40px;
+  gap:20px;
+}
+
+.save-button {
+  margin-top: 20px;
+  padding: 10px 40px;
+  background-color: var(--deep-red);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/* button-simpan */
+/* Edit Data Diri */
+
+/* footer */
+.footer {
+  display: flex;
+  background-color: var(--dark-red-1);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+.childfooter {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.childfooter h1 {
+  color: #fff;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.childfooter img {
+  width: 30px;
+  margin-left: 5px;
+}
+
+/* footer */
+
+button.edit-button,
+button.save-button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.edit-button:hover {
+  transform: scale(1.05);
+}
+
+button.save-button:hover {
+  transform: scale(1.05);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="file"] {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="file"]:focus {
+  border-color: #fff;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.7);
+  outline: none;
+}

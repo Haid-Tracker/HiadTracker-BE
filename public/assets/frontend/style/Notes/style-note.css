@@ -1,0 +1,1022 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+/* navbar */
+
+.navbartop {
+  background-color: #6b0d0d;
+  padding: 10px 0;
+  position: fixed;
+  /* Perbarui */
+  width: 100%;
+  top: 0;
+  z-index: 9999;
+  /* Perbarui */
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 10px 20px;
+  position: fixed;
+  width: 98%;
+  top: 20px;
+  /* Perbarui */
+  z-index: 9999;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 18px;
+  color: black;
+  margin-left: 30px;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  list-style-type: none;
+}
+
+.navbar .nav-links li a {
+  margin: 0 30px;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.navbar .nav-links .btn {
+  background-color: #5d0a0a;
+  color: #fff;
+  border: none;
+  padding: 5px 30px;
+  border-radius: 5px;
+  margin-left: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar .nav-links .btn:hover {
+  background-color: #7a0e0e;
+}
+
+.navbar .nav-links .theme-toggle {
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.menu-button {
+  background-color: #ffffff;
+  margin: 20px;
+}
+
+#hamburger {
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(9, 9, 9, 0.2);
+}
+
+#hamburger.active {
+  background-color: #7a0e0e;
+}
+
+/* navbar */
+
+/* profil */
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+/* profil */
+
+.container {
+  padding-top: 120px;
+  padding-left: 60px;
+  padding-right: 60px;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.header-notes {
+  display: flex;
+  align-items: center;
+  /* Vertikal sejajar */
+  justify-content: flex-start;
+  /* Konten mulai dari kiri */
+  gap: 10px;
+  /* Jarak antara button dan teks */
+}
+
+.header-notes h2 {
+  margin: 0;
+  /* Hilangkan margin default */
+  font-size: 1.5rem;
+  /* Ukuran font */
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  /* Posisikan ikon di tengah vertikal */
+  justify-content: center;
+  border: none;
+  /* Hilangkan border */
+  background: none;
+  /* Hilangkan background */
+  cursor: pointer;
+  /* Ubah kursor menjadi pointer */
+  padding: 5px;
+  /* Beri padding agar lebih nyaman diklik */
+}
+
+.back-button svg {
+  width: 24px;
+  /* Ukuran ikon */
+  height: 24px;
+  color: #333;
+  /* Warna ikon */
+}
+
+.tracker {
+  display: flex;
+  flex-wrap: wrap;
+  /* Supaya tetap responsif */
+  gap: 20px;
+  background-color: #e8e8f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Kolom */
+.col-6 {
+  flex: 1 1 48%;
+  /* 48% lebar untuk 2 kolom dengan jarak antar kolom */
+  min-width: 300px;
+  /* Responsif untuk layar kecil */
+}
+
+/* Kalender di kolom kanan */
+.calendar {
+  width: 95%;
+  /* Agar sesuai dengan kolom */
+  pointer-events: auto;
+}
+
+.selected-dates-container {
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 500px;
+  margin-top: 20px;
+  background-color: #f8f9fa;
+}
+
+.selected-date-item {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.selected-date-item button {
+  background: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.selected-date-item button:hover {
+  background: #495057;
+}
+
+/* Notes di kolom kanan */
+.notes {
+  width: 90%;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notes p {
+  color: #666666;
+}
+
+.notes .mood-buttons {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.notes .mood-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notes .mood-buttons .mood-option input[type="radio"] {
+  opacity: 0;
+  /* Sembunyikan elemen secara visual */
+  position: absolute;
+  /* Pastikan tidak mengganggu tata letak */
+  z-index: -1;
+  /* Tempatkan di belakang elemen lain */
+}
+
+.notes .mood-option .mood-button {
+  border-radius: 50%;
+  border: 1px solid #3C3C43;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  position: relative;
+}
+
+/* Default Colors */
+.notes .mood-option:nth-child(1) .mood-button {
+  background-color: #F0C452;
+  /* Happy */
+}
+
+.notes .mood-option:nth-child(2) .mood-button {
+  background-color: #3C3C43;
+  /* Neutral */
+}
+
+.notes .mood-option:nth-child(3) .mood-button {
+  background-color: #2F5D88;
+  /* Sad */
+}
+
+.notes .mood-option:nth-child(4) .mood-button {
+  background-color: #010A4F;
+  /* Tired */
+}
+
+/* Hover Effect */
+.notes .mood-option .mood-button:hover {
+  transform: scale(1.1);
+  background-color: #ffe3d8;
+  /* Warna hover */
+}
+
+/* Hover Value Display */
+.notes .mood-option .mood-button:hover::after {
+  content: attr(data-value);
+  /* Menampilkan nilai dari atribut data-value */
+  position: absolute;
+  top: 60px;
+  /* Di bawah tombol */
+  background-color: #3C3C43;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* Checked Colors */
+.notes .mood-option:nth-child(1) input[type="radio"]:checked+.mood-button {
+  background-color: #ff9f89;
+  /* Warna untuk happy */
+}
+
+.notes .mood-option:nth-child(2) input[type="radio"]:checked+.mood-button {
+  background-color: #ffccbb;
+  /* Warna untuk neutral */
+}
+
+.notes .mood-option:nth-child(3) input[type="radio"]:checked+.mood-button {
+  background-color: #ffaaa5;
+  /* Warna untuk sad */
+}
+
+.notes .mood-option:nth-child(4) input[type="radio"]:checked+.mood-button {
+  background-color: #ff867f;
+  /* Warna untuk tired */
+}
+
+/* Scaling & Shadow on Checked */
+.notes .mood-option input[type="radio"]:checked+.mood-button {
+  transform: scale(1.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Atur Layout */
+.notes .symptom-buttons {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  /* Untuk responsif jika terlalu banyak tombol */
+}
+
+.notes .symptom-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notes .symptom-option input[type="checkbox"] {
+  opacity: 0;
+  /* Sembunyikan kotak checkbox */
+  position: absolute;
+  /* Pastikan tidak mengganggu tata letak */
+  z-index: -1;
+  /* Tempatkan di belakang elemen lain */
+}
+
+/* Gaya Tombol */
+.notes .symptom-option .symptom-button {
+  background-color: #999999;
+  /* Warna default */
+  border-radius: 20px;
+  border: 1px solid #3C3C43;
+  padding: 10px 15px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+/* Warna Berdasarkan ID */
+.notes .symptom-option:nth-child(1) .symptom-button {
+  background-color: #999999;
+  /* Nyeri */
+  color: #FFFFFF;
+}
+
+.notes .symptom-option:nth-child(2) .symptom-button {
+  background-color: #3C3C43;
+  /* Kram Perut */
+  color: #FFFFFF;
+}
+
+.notes .symptom-option:nth-child(3) .symptom-button {
+  background-color: #3E9C6E;
+  /* Mual */
+  color: #FFFFFF;
+}
+
+.notes .symptom-option:nth-child(4) .symptom-button {
+  background-color: #EDAD08;
+  /* Tidak Ada Gejala */
+  color: #FFFFFF;
+}
+
+/* Efek Hover */
+.notes .symptom-option .symptom-button:hover {
+  transform: scale(1.1);
+  background-color: #ffe3d8;
+  /* Warna hover */
+  color: #000
+}
+
+/* Checkbox yang Dipilih */
+.notes .symptom-option input[type="checkbox"]:checked+.symptom-button {
+  transform: scale(1.1);
+  background-color: #ff9f89;
+  /* Warna saat dipilih */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #000
+}
+
+/* Container untuk tombol pilihan siklus */
+.cycle-history {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  /* Untuk responsif */
+}
+
+/* Mengatur elemen label sebagai tombol */
+.cycle-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Menyembunyikan radio button */
+.cycle-option input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  /* Menempatkan input di belakang */
+}
+
+/* Gaya untuk span (button) */
+.cycle-option .cycle-button {
+  background-color: #f0c452;
+  /* Warna default */
+  border-radius: 20px;
+  border: 1px solid #3c3c43;
+  padding: 10px 15px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+/* Efek hover pada button */
+.notes .cycle-option .cycle-button:hover {
+  transform: scale(1.1);
+  background-color: #ffe3d8;
+  /* Warna saat hover */
+}
+
+/* Gaya saat radio button dipilih */
+.cycle-option input[type="radio"]:checked+.cycle-button {
+  transform: scale(1.1);
+  background-color: #ff9f89;
+  /* Warna saat dipilih */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Warna sesuai dengan siklus */
+.cycle-option #cycle-1+.cycle-button {
+  background-color: #3E9C6E;
+  /* Siklus Teratur */
+  color: #fff;
+}
+
+.cycle-option #cycle-2+.cycle-button {
+  background-color: #3c3c43;
+  /* Siklus Tidak Teratur */
+  color: #fff;
+}
+
+/* Warna saat dipilih untuk siklus tidak teratur */
+.cycle-option #cycle-2:checked+.cycle-button {
+  background-color: #ff9f89;
+  /* Warna saat dipilih untuk siklus tidak teratur */
+  color: #000;
+  /* Pastikan teks tetap putih */
+}
+
+/* Warna saat dipilih untuk siklus teratur */
+.cycle-option #cycle-1:checked+.cycle-button {
+  background-color: #ff9f89;
+  /* Warna saat dipilih untuk siklus teratur */
+  color: #000;
+}
+
+/* Container untuk pilihan ganti pembalut */
+.notes .pad-change-history {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  /* Untuk responsif jika terlalu banyak tombol */
+}
+
+/* Mengatur elemen label sebagai tombol */
+.notes .pad-change-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Menyembunyikan radio button */
+.notes .pad-change-option input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  /* Menempatkan input di belakang */
+}
+
+/* Gaya untuk span (button) */
+.notes .pad-change-option .pad-change-button {
+  background-color: #f0c452;
+  border-radius: 20px;
+  border: 1px solid #3c3c43;
+  padding: 10px 15px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+}
+
+/* Efek hover pada button */
+.notes .pad-change-option .pad-change-button:hover {
+  transform: scale(1.1);
+  background-color: #ffe3d8;
+  /* Warna saat hover */
+}
+
+/* Gaya saat radio button dipilih */
+.notes .pad-change-option input[type="radio"]:checked+.pad-change-button {
+  transform: scale(1.1);
+  background-color: #ff9f89;
+  /* Warna saat dipilih */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #000 !important;
+  /* Warna teks saat dipilih */
+}
+
+/* Warna sesuai dengan pilihan "1 kali atau lebih" */
+.notes .pad-change-option #pad-change-1+.pad-change-button {
+  background-color: #f0c452;
+  color: #fff;
+}
+
+/* Warna sesuai dengan pilihan "Tidak mengganti (0 kali)" */
+.notes .pad-change-option #pad-change-2+.pad-change-button {
+  background-color: #3c3c43;
+  color: #fff;
+}
+
+/* Warna saat dipilih untuk "1 kali atau lebih" */
+.notes .pad-change-option #pad-change-1:checked+.pad-change-button {
+  background-color: #ff9f89;
+  /* Warna saat dipilih */
+  color: #fff;
+  /* Pastikan teks tetap putih */
+}
+
+/* Warna saat dipilih untuk "Tidak mengganti (0 kali)" */
+.notes .pad-change-option #pad-change-2:checked+.pad-change-button {
+  background-color: #ff9f89;
+  /* Warna saat dipilih */
+  color: #fff;
+  /* Pastikan teks tetap putih */
+}
+
+/* Container untuk pilihan obat */
+.notes .medication-history {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  /* Untuk responsif */
+}
+
+/* Mengatur elemen label sebagai tombol */
+.notes .medication-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Menyembunyikan radio button */
+.notes .medication-option input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  /* Menempatkan input di belakang */
+}
+
+/* Gaya untuk span (button) */
+.notes .medication-option .medication-button {
+  background-color: #f0c452;
+  border-radius: 20px;
+  border: 1px solid #3c3c43;
+  padding: 10px 15px;
+  color: #000;
+  /* Warna teks default */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+}
+
+/* Efek hover pada button */
+.notes .medication-option .medication-button:hover {
+  transform: scale(1.1);
+  background-color: #ffe3d8;
+  /* Warna saat hover */
+}
+
+/* Gaya saat radio button dipilih */
+.notes .medication-option input[type="radio"]:checked+.medication-button {
+  transform: scale(1.1);
+  background-color: #ff9f89;
+  /* Warna saat dipilih */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #000
+}
+
+/* Warna sesuai dengan pilihan "Sedang Mengonsumsi Obat" */
+.notes .medication-option #medication-1+.medication-button {
+  background-color: #f0c452;
+  color: #fff;
+}
+
+/* Warna sesuai dengan pilihan "Tidak Mengonsumsi Obat" */
+.notes .medication-option #medication-2+.medication-button {
+  background-color: #3c3c43;
+  color: #fff;
+}
+
+/* Warna saat dipilih untuk "Sedang Mengonsumsi Obat" */
+.notes .medication-option #medication-1:checked+.medication-button {
+  background-color: #ff9f89;
+  /* Warna saat dipilih */
+  color: #000;
+  /* Pastikan teks tetap putih */
+}
+
+/* Warna saat dipilih untuk "Tidak Mengonsumsi Obat" */
+.notes .medication-option #medication-2:checked+.medication-button {
+  background-color: #ff9f89;
+  /* Warna saat dipilih */
+  color: #000;
+  /* Pastikan teks tetap putih */
+}
+
+/* Atur gaya untuk textarea */
+.custom-textarea {
+  width: 95%;
+  /* Pastikan textarea memenuhi lebar yang diinginkan */
+  height: 100px;
+  /* Atur tinggi sesuai kebutuhan */
+  padding: 5px;
+  /* Tambahkan padding di dalam textarea */
+  border: 1px solid #ccc;
+  /* Warna border */
+  border-radius: 5px;
+  /* Membuat sudut melengkung */
+  font-family: 'Roboto', sans-serif;
+  /* Font keluarga Roboto */
+  font-size: 14px;
+  /* Ukuran font */
+  line-height: 1.5;
+  /* Spasi baris */
+  resize: vertical;
+  /* Izinkan perubahan tinggi saja */
+  outline: none;
+  /* Hilangkan garis biru bawaan saat fokus */
+  transition: border-color 0.3s ease;
+  /* Animasi saat fokus */
+}
+
+/* Gaya saat textarea di fokuskan */
+.custom-textarea:focus {
+  border-color: #007BFF;
+  /* Ubah warna border saat fokus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  /* Tambahkan bayangan saat fokus */
+}
+
+.notes button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tracker-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  /* Jarak antar tombol */
+  margin-top: 20px;
+  /* Jarak dari elemen atas */
+  width: 100%;
+  /* Pastikan tombol mengambil ruang penuh */
+}
+
+.tracker-buttons button,
+.tracker-buttons a
+{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tracker-buttons button,
+.tracker-buttons a
+{
+  background-color: #800000;
+  color: white;
+  text-decoration: none;
+}
+
+.article {
+  margin-bottom: -20px;
+}
+
+.container-article {
+  width: 100%;
+  margin-top: 50px;
+
+}
+
+.section-prediction {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #6B1212;
+  padding: 5rem;
+  color: #FFFFFF;
+}
+
+/* Kolom */
+.col-6 {
+  flex: 1 1 48%;
+  /* 48% lebar untuk 2 kolom dengan jarak antar kolom */
+  min-width: 300px;
+  /* Responsif untuk layar kecil */
+
+}
+
+/* Kalender di kolom kanan */
+.predction-cycle {
+  width: 90%;
+  /* Agar sesuai dengan kolom */
+}
+
+.card {
+  display: flex;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 600px;
+}
+
+/* Bagian tanggal */
+.card-date {
+  background-color: #e6e6e6;
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-date-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.card-date-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.card-date-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0;
+}
+
+.card-date-month {
+  font-size: 14px;
+  color: #666 !important;
+}
+
+/* Bagian konten */
+.card-content {
+  padding: 20px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* display: none; */
+}
+
+.card-content h4 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.card-content p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+}
+
+.card-placeholder {
+  margin-top: 12%;
+  display: flex;
+  /* Gunakan Flexbox */
+  justify-content: center;
+  /* Tengah horizontal */
+  align-items: center;
+  /* Tengah vertikal */
+  text-align: center;
+  color: gray;
+  flex-wrap: nowrap;
+  /* Pastikan tidak membungkus konten */
+  padding-left: 5px;
+  font-weight: bold;
+}
+
+.card-placeholder span,
+.card-placeholder a {
+  white-space: nowrap;
+  /* Mencegah teks terputus ke baris baru */
+  display: inline;
+  /* Pastikan elemen tetap inline */
+  margin: 0;
+  /* Hapus margin tambahan */
+  padding: 0;
+  /* Hapus padding tambahan */
+  text-decoration: none;
+  /* Opsional: hilangkan underline */
+}
+
+.card-content {
+  /* display: none; */
+  /* Sembunyikan konten card secara default */
+}
+
+.card-date .card-date-title,
+.card-date .card-date-subtitle,
+.card-date .card-date-number,
+.card-date .card-date-month {
+  /* visibility: hidden; */
+  /* Kosongkan teks tanggal */
+}
+
+/* Notes di kolom kanan */
+.title-artikel {
+  width: 100%;
+}
+
+.title-artikel button {
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  height: 2.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.title-artikel button:first-of-type {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.25);
+  /* Putih dengan opasitas 25% */
+  color: #FFFFFF;
+  /* Warna teks tetap solid putih */
+}
+
+.show-another {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  /* Jarak dari elemen atas */
+  margin-bottom: 40px;
+  width: 100%;
+  /* Pastikan tombol mengambil ruang penuh */
+}
+
+.show-another button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.show-another button {
+  background-color: #800000;
+  color: white;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  background-color: #5d0a0a;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  flex-direction: row;
+}
+
+.childfooter {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.childfooter h1 {
+  color: #fff;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.childfooter img {
+  width: 30px;
+  margin-left: 5px;
+}
+
+/* footer */
+
+/* transisi */
+/* Menambahkan efek zoom pada tombol dan fokus area */
+button:hover,
+a:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+button:active,
+a:active
+{
+  transform: scale(1.05);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid #6b0d0d;
+  box-shadow: 0 0 5px rgba(107, 13, 13, 0.7);
+  transition: all 0.3s ease-in-out;
+}
+
+#btn-download {
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+#btn-download:hover {
+  transform: scale(1.1);
+}
+
+/* Animasi Navigasi Links */
+.nav-links a {
+  position: relative;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #6b0d0d;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #6b0d0d;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}

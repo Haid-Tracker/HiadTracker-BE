@@ -37,7 +37,7 @@ class CycleRecordFactory extends Factory
             'mood' => fake()->randomElement($moods),
             'medication' => fake()->boolean(),
             'cycle_regularity' => fake()->boolean(),
-            'notes' => fake()->optional()->text(200),
+            'notes' => fake()->text(200),
         ];
     }
 

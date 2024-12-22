@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 // Frontend
 use App\Http\Controllers\Frontend\CycleRecordController as FrontendCycleRecordController;
 use App\Http\Controllers\Frontend\ArticleController as FrontendArticleController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +28,6 @@ use App\Http\Controllers\Frontend\ArticleController as FrontendArticleController
 |
 */
 
-Route::get('/test', function () {
-    return view('frontend.auth.verify-email');
-});
-
 Route::get('/', function () {
     if (auth()->check()) {
         $role = auth()->user()->getRoleNames()->first();
@@ -41,28 +38,41 @@ Route::get('/', function () {
         }
     }
     return view('frontend.welcome');
-})->name('welcome');
+});
+
+Route::get('/about-us', function () {
+    return view('frontend.about-us');
+})->name('about-us');
+
+Route::get('/terms-condition', function () {
+    return view('frontend.terms-condition');
+})->name('terms');
+
+Route::get('/article-general', function () {
+    return view('frontend.article-general');
+})->name('article-general');
 
 // user routes
 Route::middleware(['auth', 'verified', 'role:user'])->group(function () {
     Route::get('/home', function () {
         return view('frontend.home');
     })->name('home');
-});
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/{id}', [ProfileController::class, 'card'])->name('profile');
+    Route::get('/profile/fill/{id}', [ProfileController::class, 'fillProfile'])->name('profile.fill');
+    Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('custom.password.change');
     Route::put('/change-password', [ChangePasswordController::class, 'changePassword'])->name('custom.password.update');
 
     Route::resource('cycle-record', FrontendCycleRecordController::class);
+    Route::get('cycle-record/show/{id}/pdf', [FrontendCycleRecordController::class, 'generateShowPdf'])->name('cycle-record.pdf');
+    Route::get('cycle-record/pdf/index', [FrontendCycleRecordController::class, 'generateIndexPdf'])->name('cycle-record.index.pdf');
     Route::get('cycle-record/{id}/delete', [FrontendCycleRecordController::class, 'destroy'])->name('cycle-record.delete');
 
     Route::resource('article', FrontendArticleController::class);
-
 });
 
 // admin routes
@@ -82,6 +92,8 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::group(['middleware' => ['role:super-admin|admin'], 'prefix' => 'admin', 'as' => 'admin.'], function() {
+
+    Route::resource('/', HomeController::class);
 
     Route::resource('permissions', PermissionController::class);
     Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy'])->name('permissions.delete');

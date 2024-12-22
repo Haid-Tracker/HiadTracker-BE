@@ -1,7 +1,7 @@
-<aside class="main-sidebar sidebar-dark-indigo elevation-4">
+<aside class="main-sidebar sidebar-light-indigo elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('admin') }}" class="brand-link">
-      <img src="{{ asset('assets/dist/img/haid-tracker-icon.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{ asset('assets/frontend/img/LandingPage/noto_drop-of-blood.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Haid Tracker</span>
     </a>
 

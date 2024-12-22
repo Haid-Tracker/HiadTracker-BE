@@ -63,6 +63,8 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <!-- toast -->
 <script src="{{ asset('assets/plugins/toastr/toastr.min.js') }}"></script>
 <script>

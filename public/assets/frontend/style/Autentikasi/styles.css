@@ -1,0 +1,140 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+.navbartop {
+  background-color: #6b0d0d;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 9999;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0 20px;
+  background-color: #fff;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.left,
+.right {
+  flex: 1;
+  padding: 20px;
+  max-width: 480px;
+  width: 100%;
+}
+
+.left h1 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.left h1 span {
+  color: #800000;
+  font-weight: bold;
+}
+
+.icon-placeholder img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+.right {
+  padding: 20px;
+  max-width: 480px;
+}
+
+.right h2 {
+  font-size: 24px;
+  color: #800000;
+  margin-bottom: 10px;
+}
+
+.right p {
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #800000;
+  border-radius: 20px;
+  outline: none;
+  padding-right: 35px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #fff;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.7);
+}
+
+.show-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #800000;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.btn:hover {
+  background-color: #660000;
+}
+
+.terms {
+  margin-top: 10px;
+}
+
+.terms a {
+  color: #800000;
+  text-decoration: none;
+}
+
+.login-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-link a {
+  color: #800000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

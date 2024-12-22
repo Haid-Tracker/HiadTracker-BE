@@ -9,7 +9,6 @@ Proyek HaidTracker adalah sebuah platform website yang dirancang untuk mendukung
 
 ## Cara Running
 - clone project
-- npm install
 - php artisan migrate
 - php artisan db:seed
 - php artisan serve

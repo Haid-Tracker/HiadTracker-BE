@@ -1,49 +1,51 @@
 @extends('frontend.auth.layout')
 
 @section('content')
-<section class="hold-transition login-page">
-  <div class="login-box">
-    <div class="login-logo">
-      <a href="#"><b>Haid</b>Tracker</a>
+<div class="container">
+    <!-- Left Section with Image and Text -->
+    <div class="left">
+        <div class="icon-placeholder">
+            <img src="{{ asset('assets/frontend/img/Autentikasi/drop-of-blood.png') }}" alt="Blood Icon">
+        </div>
+        <h1>Buat catatan siklus haid kamu lebih mudah dengan <span>HaidTracker</span></h1>
     </div>
 
-    <div class="card">
-      <div class="card-body login-card-body">
-        <p class="login-box-msg">Forgot Password</p>
+    <!-- Right Section with Forgot Password Form -->
+    <div class="right">
+        <h2>Forgot Password</h2>
+        <p>Masukkan email kamu untuk menerima link reset password.</p>
 
-        <div class="mb-4 text-sm text-gray-600">
-          {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link.') }}
-        </div>
-
+        <!-- Displaying success message if any -->
         @if (session('status'))
-          <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-          </div>
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
         @endif
 
+        <!-- Forgot Password Form -->
         <form method="POST" action="{{ route('password.email') }}">
-          @csrf
+            @csrf
 
-          <div class="input-group mb-3">
-            <input type="email" class="form-control" name="email" placeholder="Email" required autofocus>
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
+            <!-- Email Input -->
+            <div class="input-group">
+                <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" required autofocus>
+                @error('email')
+                    <span class="text-danger text-sm">{{ $message }}</span>
+                @enderror
             </div>
-            @error('email')
-              <span class="text-danger text-sm">{{ $message }}</span>
-            @enderror
-          </div>
 
-          <div class="row">
-            <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Send Password Reset Link</button>
+            <!-- Submit Button -->
+            <div class="row">
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary btn-block">Send Password Reset Link</button>
+                </div>
             </div>
-          </div>
         </form>
-      </div>
+
+        <!-- Login Link -->
+        <p class="login-link">
+            Sudah ingat password? <a href="{{ route('login') }}">Login Ke Akun</a>
+        </p>
     </div>
-  </div>
-</section>
+</div>
 @endsection

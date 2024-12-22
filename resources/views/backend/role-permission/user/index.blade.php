@@ -37,6 +37,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Verify Email</th>
                         <th>Roles</th>
                         <th>Action</th>
                     </tr>
@@ -47,6 +48,7 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->email_verified_at }}</td>
                         <td>
                             @if (!empty($user->getRoleNames()))
                                 @foreach ($user->getRoleNames() as $rolename)
