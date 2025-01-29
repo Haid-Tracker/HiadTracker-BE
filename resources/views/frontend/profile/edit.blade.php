@@ -1,12 +1,27 @@
-@extends('frontend.layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="dicoding:email" content="sanayaalmatin@gmail.com">
 
-@section('style')
-<link rel="stylesheet" href="{{ asset('assets/frontend/style/DataPengguna/style.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/frontend/style/DataPengguna/responsive.css') }}" />
-@endsection
+    <link rel="stylesheet" href="{{ asset('assets/frontend/style/DataPengguna/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/frontend/style/DataPengguna/responsive.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/frontend/style/alert.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/frontend/img/LandingPage/noto_drop-of-blood.png') }}">
 
-@section('content')
-<!-- Data Diri -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Haid Tracker</title>
+  </head>
+  <body>
 <div id="data-diri-section">
     <!-- navbar -->
     <header>
@@ -74,7 +89,7 @@
 
         <div class="button-container-1">
           <button class="edit-button" id="edit-button">Edit</button>
-          <a href="{{ url('/') }}" style="text-decoration: none;" class="edit-button">Kembali</a>
+          <button class="edit-button" onclick="window.location.href='{{ url('/') }}'">Kembali</button>
         </div>
     </div>
 </div>
@@ -112,11 +127,11 @@
         </div>
         <div class="input-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Email" value="{{old('name', $user->email)}}" />
+        <input type="email" id="email" name="email" placeholder="Email" value="{{old('email', $user->email)}}" />
         </div>
         <div class="input-group">
         <label for="profile-pic">Foto Profil</label>
-        <input type="file" id="profile-pic" name="photo" />
+        <input type="file" id="profile-pic" name="photo" />`
         @if($user->profile->photo ?? false)
             <img src="{{ asset('storage/assets/images/profile/' . $user->profile->photo) }}" alt="Foto Profil" class="img-thumbnail mt-2" style="max-width: 150px;" />
         @endif
@@ -126,15 +141,15 @@
     <div class="container2">
         <div class="input-group">
         <label for="Umur">Tanggal Lahir</label>
-        <input type="date" id="umur" name="birth_date" placeholder="Tahun" value="{{old('name', $user->profile->birth_date ?? '')}}" />
+        <input type="date" id="umur" name="birth_date" placeholder="Tahun" value="{{old('birth_date', $user->profile->birth_date ?? '')}}" />
         </div>
         <div class="input-group">
         <label for="Berat-badan">Berat Badan</label>
-        <input type="text" id="berat-badan" name="weight" placeholder="Kg" value="{{old('name', $user->profile->weight ?? '0 Kg')}}" />
+        <input type="text" id="berat-badan" name="weight" placeholder="Kg" value="{{old('weight', $user->profile->weight ?? '0')}}" />
         </div>
         <div class="input-group">
         <label for="Tinggi-badan">Tinggi Badan</label>
-        <input type="text" id="tinggi-badan" name="height" placeholder="Cm" value="{{old('name', $user->profile->height ?? '0 Cm')}}" />
+        <input type="text" id="tinggi-badan" name="height" placeholder="Cm" value="{{old('height', $user->profile->height ?? '0')}}" />
         </div>
     </div>
 
@@ -144,8 +159,6 @@
     </div>
 </div>
 </form>
-</div>
-<!-- section -->
 
 <!-- Error Messages -->
 @if ($errors->any())
@@ -167,39 +180,55 @@
     </div>
 </div>
 @endif
-@endsection
+<!-- section -->
+</div>
 
-@section('js-section')
-<script>
-    // Referensi ke elemen
-    const editButton = document.getElementById("edit-button");
-    const saveButton = document.getElementById("save-button");
-    const backButton = document.getElementById("back-button"); // Tombol Kembali
-    const dataDiriSection = document.getElementById("data-diri-section");
-    const editDataDiriSection = document.getElementById("edit-data-diri-section");
 
-    // Event listener untuk tombol Edit
-    editButton.addEventListener("click", () => {
-      dataDiriSection.style.display = "none";
-      editDataDiriSection.style.display = "block";
-    });
+<!-- footer -->
+<footer class="footer">
+    <div class="childfooter">
+        <h1>Made With Care.</h1>
+        <img
+        src="../img/LandingPage/footer.png"
+        alt="Blood drop icon"
+        height="30"
+        />
+    </div>
+    </footer>
+    <!-- footer -->
+    <script src="{{ asset('assets/frontend/script/utils/drawer.js') }}"></script>
+    <script src="{{ asset('assets/frontend/script/alert.js') }}"></script>
+    <script>
+        // Referensi ke elemen
+        const editButton = document.getElementById("edit-button");
+        const saveButton = document.getElementById("save-button");
+        const backButton = document.getElementById("back-button"); // Tombol Kembali
+        const dataDiriSection = document.getElementById("data-diri-section");
+        const editDataDiriSection = document.getElementById("edit-data-diri-section");
 
-    // Event listener untuk tombol Simpan
-    saveButton.addEventListener("click", (e) => {
-      e.preventDefault();
+        // Event listener untuk tombol Edit
+        editButton.addEventListener("click", () => {
+          dataDiriSection.style.display = "none";
+          editDataDiriSection.style.display = "block";
+        });
 
-      editDataDiriSection.style.display = "none";
-      dataDiriSection.style.display = "block";
+        // Event listener untuk tombol Simpan
+        saveButton.addEventListener("click", (e) => {
+          e.preventDefault();
 
-      const form = document.querySelector('form');
-      form.submit();
-    });
+          editDataDiriSection.style.display = "none";
+          dataDiriSection.style.display = "block";
 
-    // Event listener untuk tombol Kembali
-    backButton.addEventListener("click", () => {
-      editDataDiriSection.style.display = "none";
-      dataDiriSection.style.display = "block";
-    });
-</script>
+          const form = document.querySelector('form');
+          form.submit();
+        });
 
-@endsection
+        // Event listener untuk tombol Kembali
+        backButton.addEventListener("click", () => {
+          editDataDiriSection.style.display = "none";
+          dataDiriSection.style.display = "block";
+        });
+    </script>
+</body>
+</html>
+

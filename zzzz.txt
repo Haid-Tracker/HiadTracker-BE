@@ -1,3 +1,4 @@
+saya memiliki view:
 @extends('frontend.layouts.app')
 
 @section('style')
@@ -8,6 +9,51 @@
 
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.15/index.global.min.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const notes = JSON.parse(localStorage.getItem('haidTrackerNotes')) || [];
+
+        document.querySelectorAll('.calendar').forEach((calendarEl, index) => {
+            const calendarContainer = calendarEl.closest('.calendar-container');
+            const startDate = calendarContainer.getAttribute('data-start-date');
+            const endDate = calendarContainer.getAttribute('data-end-date');
+
+            // Tambahkan 1 hari pada endDate
+            const adjustedEndDate = new Date(endDate);
+            adjustedEndDate.setDate(adjustedEndDate.getDate() + 1);
+
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                initialDate: startDate,
+                schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+                selectable: false,
+                events: [
+                    ...notes.map(note => ({
+                        title: `Mood: ${note.mood}, Gejala: ${note.symptom}`,
+                        start: note.date,
+                        description: note.note,
+                    })),
+                    {
+                        start: startDate,
+                        end: adjustedEndDate.toISOString().split('T')[0],
+                        display: 'background',
+                        color: '#ff9f89'
+                    }
+                ],
+                eventClick: function (info) {
+                    // Only show alert for note events, not background events
+                    if (info.event.display !== 'background') {
+                        alert(`Detail Catatan:\n\n${info.event.title}\nCatatan: ${info.event.extendedProps.description}`);
+                    }
+                },
+                handleWindowResize: true,
+                expandRows: true
+            });
+
+            calendar.render();
+        });
+    });
+</script>
 @endsection
 
 @section('content')
@@ -33,8 +79,7 @@
                         <!-- Konten Baru di Sini -->
                         <h3>Kalender Siklus</h3>
                         <div class="calendar-container" data-start-date="{{ $data->start_date }}" data-end-date="{{ $data->end_date }}">
-                            {{-- <div id="calendar" class="calendar"></div> --}}
-                            <div class="calendar calendar-{{ $data->id }}"></div>
+                            <div id="calendar" class="calendar"></div>
                         </div>
                         <div class="selected-dates-container">
                             <label><strong>Tanggal Siklus Anda</strong></label>
@@ -122,7 +167,7 @@
                             <!-- Konten Baru di Sini -->
                             <h3>Kalender Siklus</h3>
                             <div class="calendar-container" data-start-date="{{ $data->start_date }}" data-end-date="{{ $data->end_date }}">
-                                <div class="calendar calendar-{{ $data->id }}"></div>
+                                <div id="calendar" class="calendar"></div>
                             </div>
                             <div class="selected-dates-container">
                                 <label><strong>Tanggal Siklus Anda</strong></label>
@@ -206,100 +251,23 @@
 
 @section('js-section')
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const notes = JSON.parse(localStorage.getItem('haidTrackerNotes')) || [];
-    let calendars = new Map(); // Use Map to store calendar instances with their IDs
-
-    // Function to initialize calendars
-    function initializeCalendars(containerSelector = '.calendar-container') {
-        document.querySelectorAll(`${containerSelector} .calendar`).forEach((calendarEl) => {
-            // Get unique identifier from class name
-            const calendarId = Array.from(calendarEl.classList)
-                .find(className => className.startsWith('calendar-'));
-
-            // Skip if calendar is already initialized
-            if (calendars.has(calendarId)) return;
-
-            const calendarContainer = calendarEl.closest('.calendar-container');
-            const startDate = calendarContainer.getAttribute('data-start-date');
-            const endDate = calendarContainer.getAttribute('data-end-date');
-
-            // Add 1 day to endDate
-            const adjustedEndDate = new Date(endDate);
-            adjustedEndDate.setDate(adjustedEndDate.getDate() + 1);
-
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                initialDate: startDate,
-                schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-                selectable: false,
-                events: [
-                    ...notes.map(note => ({
-                        title: `Mood: ${note.mood}, Gejala: ${note.symptom}`,
-                        start: note.date,
-                        description: note.note,
-                    })),
-                    {
-                        start: startDate,
-                        end: adjustedEndDate.toISOString().split('T')[0],
-                        display: 'background',
-                        color: '#ff9f89'
-                    }
-                ],
-                eventClick: function (info) {
-                    if (info.event.display !== 'background') {
-                        alert(`Detail Catatan:\n\n${info.event.title}\nCatatan: ${info.event.extendedProps.description}`);
-                    }
-                },
-                handleWindowResize: true,
-                expandRows: true
-            });
-
-            calendar.render();
-            calendars.set(calendarId, calendar);
-        });
-    }
-
-    // Initialize visible calendars on page load
-    initializeCalendars();
-
+document.addEventListener("DOMContentLoaded", function () {
     const showMoreButton = document.getElementById('show-more');
     const showLessButton = document.getElementById('show-less');
     const remainingRecords = document.getElementById('remaining-records');
 
-    showMoreButton?.addEventListener('click', function () {
+    // Show more button click handler
+    showMoreButton.addEventListener('click', function () {
         remainingRecords.style.display = 'block';
         showMoreButton.style.display = 'none';
         showLessButton.style.display = 'block';
-
-        // Initialize remaining calendars after they become visible
-        setTimeout(() => {
-            initializeCalendars('#remaining-records .calendar-container');
-            // Force resize to ensure proper rendering
-            window.dispatchEvent(new Event('resize'));
-        }, 200); // Increased timeout to ensure DOM is ready
     });
 
-    showLessButton?.addEventListener('click', function () {
+    // Show less button click handler
+    showLessButton.addEventListener('click', function () {
         remainingRecords.style.display = 'none';
         showMoreButton.style.display = 'block';
         showLessButton.style.display = 'none';
-
-        // Destroy only the hidden calendars
-        document.querySelectorAll('#remaining-records .calendar').forEach((el) => {
-            const calendarId = Array.from(el.classList)
-                .find(className => className.startsWith('calendar-'));
-            const calendar = calendars.get(calendarId);
-            if (calendar) {
-                calendar.destroy();
-                calendars.delete(calendarId);
-            }
-        });
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        calendars.forEach(calendar => calendar.updateSize());
     });
 });
 </script>
@@ -324,3 +292,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 </script>
 @endsection
+
+
+controller:
+public function index()
+    {
+        $datas = CycleRecord::where('user_id', Auth::id())
+            ->with(['feedback'])
+            ->latest()
+            ->get();
+
+        if ($datas->isEmpty()) {
+            return redirect()->route('cycle-record.create');
+        }
+
+        $datas->map(function ($cycleRecord) {
+            $cycleRecord->durationCycle = Carbon::parse($cycleRecord->end_date)
+                ->diffInDays(Carbon::parse($cycleRecord->start_date)) + 1;
+        });
+
+        $chunkedDatas = $datas->chunk(3);
+        $initialDatas = $chunkedDatas->first();
+        $remainingDatas = $chunkedDatas->slice(1)->collapse();
+
+        return view('frontend.cycle-records.index', compact('initialDatas', 'remainingDatas'));
+    }
